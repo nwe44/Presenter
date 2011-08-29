@@ -28,18 +28,15 @@ var presenter = {
 
 			$('header').toggleClass('minimized');
 			$('body').toggleClass('header-visible');
-			$('.note-minimized').toggleClass('note-minimized');
+			if ($('body').hasClass('header-visible')) {
+				$('.note-minimized').removeClass('note-minimized');
+			} else {
+				$('.note').addClass('note-minimized');
+			}
+			
 			return false;
 		});
-		$('.note-link').click(function(e){
-			e.preventDefault();
-			// Push this URL "state" onto the history hash.
-			$('header').addClass('minimized');
-			$('body').removeClass('header-visible');
 
-			$(this).parent().addClass('note-minimized');
-			return false;
-		});
 		// Bind a callback that executes when document.location.hash changes.
 		$(window).bind( "hashchange", function(e) {
 
@@ -55,8 +52,6 @@ var presenter = {
 
 				presentations.currentPresentation = presentationId;
 				$('#main').html('');
-				$('header').addClass('minimized');
-				$('body').removeClass('header-visible');
 				$('.note-current').removeClass('note-current')
 				$('#' + presentationId + "-note").addClass('note-current');
 
@@ -136,18 +131,12 @@ var presenter = {
 
 					title = $presentationNote.find('h1').text() || $((notes[0]).note);
 
-					$presentationNoteLink = $('<a />', {
-						'class': "note-link",
-						'href': "#",
-						text: "Hide panel"});
-
 					$presentationLink = $('<a />', {
 						'class': "nav-item-link",
 						'href': "#" + key,
 						'id': key,
 						text: title});
 
-					$presentationNoteLink.appendTo($presentationNote);
 
 					$('body')
 						.append($presentationNote);
