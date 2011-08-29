@@ -41,8 +41,9 @@ include_once "_/includes/markdown.php";
   <div id="container">
     <header class="minimized">
 	<h3>Navigation</h3>
-	<a href="#" class="nav-toggle">Navigation toggle</a>
+	
     </header>
+    <a href="#" class="nav-toggle">Navigation toggle</a>
     <div id="main" role="main">
 
     </div>

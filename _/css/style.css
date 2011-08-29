@@ -233,9 +233,10 @@ header{
 	z-index: 2;
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;	
-	transition: all 0.3s linear;	
-	z-index: 99;	
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+	-webkit-transform: translate3d(0,0,0);
+	z-index: 99;
 }
 
 .minimized{
@@ -274,28 +275,23 @@ header li{
 .nav-toggle{
 	position: absolute;
 	bottom: 0;
-	left:44px;
-	background: rgba(0,0,0,0.5);
-	-webkit-transition: left 0.3s linear;
-	-moz-transition: left 0.3s linear;
-	-o-transition: left 0.3s linear;	
-	transition: left 0.3s linear;
 	z-index: 999;
-	width: 44px;
-	height: 44px;
 	text-indent: -999em; 
 	overflow: hidden; 
-	left: 822px;
-	width: 9999px;
+	background: transparent;
+	width: 44px;
+	left: 0;
 	height: 100%;
 	text-align: left; 
 	direction: ltr;
 	cursor: pointer;
 }
-.minimized .nav-toggle{
-	background: transparent;
+.header-visible .nav-toggle{
 	width: 44px;
-	left: 356px;
+	background: rgba(0,0,0,0.5);
+	z-index: 2;
+	width: 9999px;
+
 }
 /* ==========================================================================
    Notes
@@ -316,6 +312,7 @@ header li{
 	-moz-transition: all 0.3s linear;
 	-o-transition: all 0.3s linear;
 	transition: all 0.3s linear;
+	-webkit-transform: translate3d(0,0,0);
 }
 .note-minimized{
 	left: -446px;
