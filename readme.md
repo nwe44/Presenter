@@ -28,4 +28,6 @@ Each sub-directory of "contents" constitutes a presentation, so,
 ## Current status
 This is more of a UX prototype than a polished piece of programming at the moment. I'm sure there are plenty of bugs, please add any you find to the issue queue. Expect much streamlining of the code. This was quickly mocked up one weekend, I'm sure some of the libraries used are overkill and they will eventually be pruned.
 
+Animations are currently only written in css, so older browsers won't see them. This will change.
+
 Moreover, there's a lot of design detailing to be done. Markdown css styling is mostly left up to the html5 normalize css at the moment, and the panel widths need to be rationalized.
