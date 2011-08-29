@@ -10,8 +10,6 @@ At my office there are a number of users who need to be able to create slideshow
 
 Most web hosts provide a gui for password protecting a directory, so this is what I'm assuming people will use for security. I can't imagine there are many options given the above constraints.
 
-- - -
-
 ## Installation
 
 1. Upload index.php, the "contents" folder and the "_" folder to a public directory
@@ -31,3 +29,5 @@ This is more of a UX prototype than a polished piece of programming at the momen
 Animations are currently only written in css, so older browsers won't see them. This will change.
 
 Moreover, there's a lot of design detailing to be done. Markdown css styling is mostly left up to the html5 normalize css at the moment, and the panel widths need to be rationalized.
+
+Ultimately a production release of this would inline all css and js. I'm also considering doing a version of the interface using no images so that the installation process is just uploading the index.php file.
