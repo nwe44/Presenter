@@ -1,0 +1,65 @@
+
+// usage: log('inside coolFunc', this, arguments);
+// paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
+window.log = function(){
+  log.history = log.history || [];   // store logs to an array for reference
+  log.history.push(arguments);
+  if(this.console) {
+    arguments.callee = arguments.callee.caller;
+    var newarr = [].slice.call(arguments);
+    (typeof console.log === 'object' ? log.apply.call(console.log, console, newarr) : console.log.apply(console, newarr));
+  }
+};
+
+// make it safe to use console.log always
+(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,timeStamp,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();){b[a]=b[a]||c}})((function(){try
+{console.log();return window.console;}catch(err){return window.console={};}})());
+
+
+// place any jQuery/helper plugins in here, instead of separate, slower script files.
+
+// $('#my-container').imagesLoaded(myFunction)
+// execute a callback when all images have loaded.
+// needed because .load() doesn't work on cached images
+
+// callback function gets image collection as argument
+//  `this` is the container
+
+// original: mit license. paul irish. 2010.
+// contributors: Yiannis Chatzikonstantinou, David DeSandro
+//   Oren Solomianik, Adam J. Sontag
+
+$.fn.imagesLoaded = function( callback ) {
+  var $images = this.find('img'),
+      len = $images.length,
+      _this = this,
+      blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+  function triggerCallback() {
+    callback.call( _this, $images );
+  }
+
+  function imgLoaded() {
+    if ( --len <= 0 && this.src !== blank ){
+      setTimeout( triggerCallback );
+      $images.unbind( 'load error', imgLoaded );
+    }
+  }
+
+  if ( !len ) {
+    triggerCallback();
+  }
+
+  $images.bind( 'load error',  imgLoaded ).each( function() {
+    // cached images don't fire load sometimes, so we reset src.
+    if (this.complete || this.complete === undefined){
+      var src = this.src;
+      // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+      // data uri bypasses webkit log warning (thx doug jones)
+      this.src = blank;
+      this.src = src;
+    }
+  });
+
+  return this;
+};
