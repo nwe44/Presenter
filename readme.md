@@ -6,7 +6,7 @@ At my office there are a number of users who need to be able to create slideshow
 
 1. No code coding knowledge may be required for usage
 2. No server technology (ie. ability to see/use .htaccess or databases) knowledge may be required
-3. Minimum setup time
+3. Needs to be locally hosted
 
 Most web hosts provide a gui for password protecting a directory, so this is what I'm assuming people will use for security. I can't imagine there are many options given the above constraints.
 
