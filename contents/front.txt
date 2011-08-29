@@ -1,0 +1,32 @@
+#General notes
+
+This is a space to add some general notes before anyone reads any presentations. This may be a place for a changelog, upcoming dates or a schedule for the project.
+
+The text is parsed as markdown, here are some typographic options
+
+# Heading level 1
+
+## Heading level 2
+
+### Heading level 3
+
+#### Heading level 4
+
+##### Heading level 5
+
+* A List
+* A List
+* A List
+* A List
+* A List
+
+1. A numbered list
+2. A numbered list
+3. A numbered list
+4. A numbered list
+5. A numbered list
+6. A numbered list
+
+> a quote
+
+*Italic text* Lorem ipsum dolor sit amet, consectetur adipisicing elit, **Bold text** sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
