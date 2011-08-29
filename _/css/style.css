@@ -365,7 +365,9 @@ code{
 .horizontal-carousel-slider,
 .horizontal-carousel-slide,
 .slidecontrols,
-.slidecontrols li{
+.slidecontrols li,
+.carousel-tabs,
+.carousel-tabs li{
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -404,11 +406,14 @@ code{
 }
 .slidecontrols li{
 	position: absolute;
-	height: 100%;
+	height: 80%;
+	top:10%;
 	z-index: 20;
+	left: 40px;
 }
 .slidecontrols li:first-child{
-	right: 15px;
+	right: 30px;
+	left: auto;
 }
 .carousel-next:hover,
 .carousel-prev:hover{
@@ -416,7 +421,7 @@ code{
 }
 .carousel-next,
 .carousel-prev{
-	width: 100px;
+	width: 200px;
 	height: 100%;
 	padding: 10px;
 	display: block;
@@ -427,9 +432,15 @@ code{
 	background-repeat: no-repeat; 
 	text-align: left; 
 	direction: ltr;
+     -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+          border-radius: 20px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+
+
 }
-
-
 .carousel-disabled{
 	display: none;
 }
@@ -441,6 +452,65 @@ code{
 	background-image: url(../img/ajax-loader.gif);
 	width: 32px;
 	height: 32px;
+}
+.horizontal-carousel-hidden .carousel-tabs{
+	bottom:-999px;
+}
+
+.carousel-tabs{
+	opacity: 0.2;
+	position: absolute;
+	z-index: 99;
+	bottom: 0;
+	right: 20px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;	
+	transition: all 0.5s ease-in-out;
+}
+.carousel-tabs:hover{
+	opacity: 1;
+}
+.carousel-tabs li{
+	margin: 5px; 
+	float: left;
+}
+.carousel-tabs li a{
+	display: block;
+	text-decoration: none;
+	text-indent: -999em; 
+	overflow: hidden; 
+	background-color: transparent; 
+	background-repeat: no-repeat; 
+	text-align: left; 
+	direction: ltr;
+	width: 10px;
+	height: 18px;
+	background: #fff;
+     -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+
+     -moz-box-shadow: 0px 0px 4px #ccc; 
+  -webkit-box-shadow: 0px 0px 4px #ccc; 
+          box-shadow: 0px 0px 4px #ccc; 
+
+}
+.carousel-tabs .carousel-active-tab a{
+	background: #333;
+	text-indent: 0; 
+	width: auto;
+	line-height: 18px;
+	height: auto;
+	color:#f1f1f1;
+	padding: 0 5px;
+	font-size: 12px;
+     -moz-box-shadow: 0px 0px 4px #fff; 
+  -webkit-box-shadow: 0px 0px 4px #fff; 
+          box-shadow: 0px 0px 4px #fff; 
 }
 
 /* ==|== media queries ======================================================
