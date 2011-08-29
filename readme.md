@@ -22,7 +22,7 @@ Done.
 Each sub-directory of "contents" constitutes a presentation, so,
 
 1. Drop images into a sub-directory of the contents folder.
-2. Create a text file (with any name) in to the folder created in step 2. The contents of this file will be parsed as Markdown, and the h1 element will name the presentation.
+2. Create a text file (with any name) in to the folder created in step 1. The contents of this file will be parsed as Markdown, and the h1 element will name the presentation.
 
 
 ## Current status
