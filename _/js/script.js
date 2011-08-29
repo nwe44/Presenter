@@ -1,4 +1,4 @@
-/* Author:
+/* Author: Nick Evans
 
 */
 
@@ -21,8 +21,7 @@ var presenter = {
 			// Prevent the default click behavior.
 			return false;
 		});
-		
-		
+
 		$('.nav-toggle').click(function(e){
 			e.preventDefault();
 			// Push this URL "state" onto the history hash.
@@ -37,7 +36,6 @@ var presenter = {
 			// Push this URL "state" onto the history hash.
 			$('header').addClass('minimized');
 			$('body').removeClass('header-visible');
-			console.log('clicked');
 
 			$(this).parent().addClass('note-minimized');
 			return false;
@@ -54,21 +52,18 @@ var presenter = {
 
 			// check there's somewhere to go, and if we're already there.
 			if (presentation && presentations.currentPresentation != presentationId) {
-			
+
 				presentations.currentPresentation = presentationId;
 				$('#main').html('');
 				$('header').addClass('minimized');
 				$('body').removeClass('header-visible');
 				$('.note-current').removeClass('note-current')
 				$('#' + presentationId + "-note").addClass('note-current');
-				
-				
+
+
 				$('#presentationTmpl').tmpl(presentation).appendTo('#main');
 
-				$('.horizontal-carousel').imagesLoaded(function () {
-					$('.horizontal-carousel').removeClass('horizontal-carousel-hidden');
-					$('.throbber').remove();
-					})
+				$('.horizontal-carousel').imagesLoaded(presenter.revealSlideshow);
 
 				$('#main .slidewrap').carousel({
 					slider: '.horizontal-carousel-slider',
@@ -101,20 +96,22 @@ var presenter = {
 
 		}
 
-			// You probably want to actually do something useful here..
 		});
-	
+
 		// Since the event is only triggered when the hash changes, we need
 		// to trigger the event now, to handle the hash the page may have
 		// loaded with.
 		$(window).trigger( "hashchange" );
 	},
 
+	revealSlideshow : function () {
+		$('.throbber').remove();
+		$('.horizontal-carousel').removeClass('horizontal-carousel-hidden');
+	},
+
 	// build the nav
-	// TODO: opts will contain a flag to show or hide the nav on page load
-	// TODO: opts will contain a flag to what the active presentation is
 	// TODO: convert this to jQuery TMPL to separate concerns
-	generateNav : function (opts) {
+	generateNav : function () {
 		var $presentation,
 			$presentationNote,
 			$presentationNoteLink,
@@ -165,8 +162,6 @@ var presenter = {
 				$presentation
 					.prepend($presentationLink);
 
-
-
 				$nav.append($presentation);
 			}
 		}
@@ -174,7 +169,6 @@ var presenter = {
 	},
 
 	pushSlideNo : function () {
-		console.log('s', $('.carousel-active-slide').index());
 		$.bbq.pushState({ s: $('.carousel-active-slide').index() });
 	}
 
