@@ -75,6 +75,7 @@ var presenter = {
 			// assume we've just changed a slide number
 			} else if (presentation) {
 
+				$('.carousel-tabs li').eq(slideNo).find('a').click();
 
 			// md5('contents') === "98bf7d8c15784f0a3d63204441e1e2aa"
 			// I know this is inellegant, but it's a temporary solution
