@@ -416,6 +416,9 @@ header{
 .popover-wrapper-note{
 	left: 30px;
 }
+.popover-wrapper-note .content{
+	padding: 40px 0;
+}
 .popover-wrapper-note h2,
 .popover-wrapper-note h3,
 .popover-wrapper-note h4,
