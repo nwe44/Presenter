@@ -494,10 +494,10 @@ code{
 	height: 100%;
 	top:0;
 	z-index: 20;
-	left: 40px;
+	left: 0;
 }
 .slidecontrols li:first-child{
-	right: 30px;
+	right: 14px;
 	left: auto;
 }
 .carousel-next:hover,
