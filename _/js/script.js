@@ -56,11 +56,8 @@ var presenter = {
 
 	newMenuStatus : function () {
 		$('.popover-wrapper-nav .popover').toggleClass('popover-visible');
-		$('body').toggleClass('header-visible');
-		if ($('body').hasClass('header-visible')) {
-			$('.note-minimized').removeClass('note-minimized');
-		} else {
-			$('.note').addClass('note-minimized');
+		if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
+			$('.popover-wrapper-note .popover').removeClass('popover-visible');
 		}
 	},
 
