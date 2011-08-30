@@ -383,13 +383,15 @@ code{
 	-o-transition: left 1s ease-in-out;	
 	transition: left 1s ease-in-out;
 	left:0;
+	bottom: 30px;
+	top:0;
+	
 }
 
 .horizontal-carousel-hidden{
 	left:-100%;
 }
 
-.horizontal-carousel,
 .horizontal-carousel-slider,
 .slidecontrols{
 	height: 100%;
@@ -406,8 +408,8 @@ code{
 }
 .slidecontrols li{
 	position: absolute;
-	height: 80%;
-	top:10%;
+	height: 100%;
+	top:0;
 	z-index: 20;
 	left: 40px;
 }
@@ -432,14 +434,6 @@ code{
 	background-repeat: no-repeat; 
 	text-align: left; 
 	direction: ltr;
-     -moz-border-radius: 20px;
-  -webkit-border-radius: 20px;
-          border-radius: 20px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-
-
 }
 .carousel-disabled{
 	display: none;
@@ -458,11 +452,14 @@ code{
 }
 
 .carousel-tabs{
-	opacity: 0.2;
-	position: absolute;
+	position: fixed;
+	border-top: 1px solid #ccc;
+	background-image: -webkit-linear-gradient( rgba(242, 242, 242, 0.9), rgba(222, 222, 222, 0.1));
+	width: 100%;
 	z-index: 99;
 	bottom: 0;
-	right: 20px;
+	right: 0;
+	text-align: right;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;	
@@ -473,7 +470,7 @@ code{
 }
 .carousel-tabs li{
 	margin: 5px; 
-	float: left;
+	display: inline-block;
 }
 .carousel-tabs li a{
 	display: block;
