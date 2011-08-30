@@ -164,8 +164,6 @@ var presenter = {
 // Bind a callback that executes when document.location.hash changes.
 $(window).bind( "hashchange", function(e) {
 
-//	console.log('hash change');
-
 	var hash = $.bbq.getState(),
 		presentationId = hash.p,
 		slideNo = hash.s,
