@@ -17,10 +17,10 @@ var presenter = {
 			// Push this URL "state" onto the history hash.
 		
 			$.bbq.pushState({ p: href.substr(1),  s: "" });
-		
+
 			return false;
 		});
-		
+
 		$('.nav-toggle').click(function(e){
 			e.preventDefault();
 			var state =  $.bbq.getState();
