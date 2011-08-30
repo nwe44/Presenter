@@ -185,7 +185,7 @@ $(window).bind( "hashchange", function(e) {
 			// md5('contents') === "98bf7d8c15784f0a3d63204441e1e2aa"
 			// I know this is inellegant, but it's a temporary solution
 			
-			for (i = 0, l = presentations['98bf7d8c15784f0a3d63204441e1e2aa'].notes.length; i < l; i += 1) {
+			for (var i = 0, l = presentations['98bf7d8c15784f0a3d63204441e1e2aa'].notes.length; i < l; i += 1) {
 				liveContent += (presentations['98bf7d8c15784f0a3d63204441e1e2aa'].notes[i]).note;
 			}
 			$presentationNote = $('<div />', {
