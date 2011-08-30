@@ -166,7 +166,6 @@ echo "<script> var presentations = " . $directories . ";</script>";
 				</div>
 			</div>
 		</div>
-		<a class="header-icon header-icon-menu ir"></a>
 	</script>
 
 	<script id="noteTmpl" type="text/x-jquery-tmpl"> 
