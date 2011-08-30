@@ -34,6 +34,19 @@ var presenter = {
 			$.bbq.pushState(state);
 			return false;
 		});
+		$('.header-icon-note').live('click', function(e){
+			e.preventDefault();
+			if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
+				var state =  $.bbq.getState();
+				state.m = true;
+				$.bbq.pushState(state);
+			}
+
+			$('.popover-wrapper-note .popover').toggleClass('popover-visible')
+			return false;
+		});
+
+
 
 		// Since the event is only triggered when the hash changes, we need
 		// to trigger the event now, to handle the hash the page may have
