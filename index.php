@@ -180,10 +180,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 				</div>
 			</div>
 		</div>
-		<a class="header-icon header-icon-note ir"></a>
 	</script>
-
-
 </body>
 </html>
 
