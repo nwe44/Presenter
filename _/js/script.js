@@ -78,7 +78,6 @@ var presenter = {
 		$('#main').html('');
 		$('popover-wrapper-note').remove();
 
-
 		$('#presentationTmpl').tmpl(opts.presentation).appendTo('#main');
 
 		$('.horizontal-carousel').imagesLoaded(presenter.revealSlideshow);
