@@ -38,17 +38,12 @@ include_once "_/includes/markdown.php";
 
 <body>
 
-  <div id="container">
-    <header class="minimized">
+	<div id="container">
+		<header class="minimized">
+			<a class="header-icon header-icon-menu ir"></a>
+		</header>
 
-    </header>
-    <a href="#" class="nav-toggle">Navigation toggle</a>
-    <div id="main" role="main">
-
-    </div>
-    <footer>
-
-    </footer>
+		<div id="main" role="main"></div>
   </div> <!--! end of #container -->
 
 
