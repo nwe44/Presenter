@@ -150,7 +150,7 @@ var presenter = {
 	},
 
 	pushSlideNo : function () {
-		var state = $.bbq.getState()
+		var state = $.bbq.getState(),
 			index = $('.carousel-active-slide').index();
 		// set the cached state so the hash change event 
 		// doesn't fire based on this change
