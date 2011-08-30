@@ -116,7 +116,6 @@ var presenter = {
 			note = {},
 			titleRegEx = new RegExp("(<h1[^>]*>(.*)</h1>)");
 
-		note.id = id;
 		note.content = (presentation.notes[0]).note;
 		note.title = titleRegEx.exec(note.content);
 		note.title = note.title[note.title.length - 1];
