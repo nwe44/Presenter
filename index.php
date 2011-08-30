@@ -169,7 +169,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	</script>
 
 	<script id="noteTmpl" type="text/x-jquery-tmpl"> 
-		<div class="popover-wrapper popover-wrapper-note" id="#${$id}-note">
+		<div class="popover-wrapper popover-wrapper-note">
 			<div class="popover above popover-visible">
 				<div class="arrow"></div>
 				<div class="inner">
