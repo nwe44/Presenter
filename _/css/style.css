@@ -232,26 +232,6 @@ header{
 	height: 30px;
 	z-index: 2;
 }
-header ul,
-header li{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-header li{
-	border-bottom: 1px solid #ccc;
-}
-header li:last-child{
-	border: 0;
-}
-.nav-item-link{
-	display: block;
-	padding: 10px;
-}
-.nav-item-link-active{
-	background: #fff;;
-}
 
 #main{
 	width: 100%;
@@ -295,81 +275,13 @@ header li:last-child{
 }
 
 /* ==========================================================================
-   Notes
-   ========================================================================== */
-.note{
-	display: none;
-	position: absolute;
-	overflow: hidden;
-	color: #999;
-	left: 0;
-	top:0;
-	height: 100%;
-	width: 446px;
-	padding: 0 54px 0 0;
-	z-index: 50;
-	background: transparent url(../img/nav-bg.png) 100% 0 repeat-y;
-	-webkit-transition: all 0.3s linear;
-	-moz-transition: all 0.3s linear;
-	-o-transition: all 0.3s linear;
-	transition: all 0.3s linear;
-	-webkit-transform: translate3d(0,0,0);
-}
-.note-minimized{
-	left: -446px;
-}
-.header-visible .note{
-	left: 356px;
-}
-.note h2,
-.note h3,
-.note h4,
-.note h5,
-.note p{
-	padding: 0.5em 20px 0 40px;
-	color:#666;
-	margin:0;
-}
-.note p{
-	padding: 0 20px 0.5em 40px;
-}
-.note h1{
-	color:#666;
-	margin-bottom: 20px;
-	margin-top: 0;
-	padding: 10px 20px 10px 40px;
-}
-
-.note-current{
-	display: block;
-}
-.note-link{
-	position: absolute;
-	bottom: 30px;
-	right: 84px;
-	font-size: 2em;
-	padding: 10px 10px 10px 20px;
-	text-decoration: none;
-}
-
-.note li{
-	color: #666;
-}
-code{
-	color: #333;
-}
-
-
-/* ==========================================================================
    Popover
    ========================================================================== */
 .popover-wrapper{
 	position:absolute;
 	bottom: 0;
 }
-.popover-wrapper-nav{
-	left: 5px;
-}
+
 .popover {
 	position: absolute;
 	bottom: 25px;
@@ -433,6 +345,9 @@ code{
 	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
+.popover-wrapper-note .inner{
+	width: 400px;
+}
 .popover .title {
 	background-color: #333;
 	color: #f1f1f1;
@@ -456,6 +371,63 @@ code{
 }
 .popover .content p, .popover .content ul, .popover .content ol {
 	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+.popover-wrapper-nav{
+	left: 5px;
+}
+.popover-wrapper-nav ul,
+.popover-wrapper-nav li{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.popover-wrapper-nav li{
+	border-bottom: 1px solid #ccc;
+}
+.popover-wrapper-nav li:last-child{
+	border: 0;
+}
+.nav-item-link{
+	display: block;
+	padding: 10px;
+}
+.nav-item-link-active{
+	background: #fff;;
+}
+
+/* ==========================================================================
+   Note
+   ========================================================================== */
+.popover-wrapper-note{
+	left: 30px;
+}
+
+.popover-wrapper-note h2,
+.popover-wrapper-note h3,
+.popover-wrapper-note h4,
+.popover-wrapper-note h5,
+.popover-wrapper-note p{
+	padding: 0.5em 20px 0 40px;
+	color:#666;
+	margin:0;
+}
+.popover-wrapper-note p{
+	padding: 0 20px 0.5em 40px;
+}
+.popover-wrapper-note .content h1{
+	display: none;
+}
+
+.note li{
+	color: #666;
+}
+code{
+	color: #333;
 }
 
 /* ==========================================================================

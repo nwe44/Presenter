@@ -63,8 +63,8 @@ var presenter = {
 			status = that.status;
 
 		$('#main').html('');
-		$('.note-current').removeClass('note-current');
-		$('#' + opts.presentationId + "-note").addClass('note-current');
+		$('popover-wrapper-note').remove();
+
 
 		$('#presentationTmpl').tmpl(opts.presentation).appendTo('#main');
 
@@ -78,6 +78,9 @@ var presenter = {
 			callback: presenter.pushSlideNo,
 			speed: 300 // ms.
 		});
+
+		// add the notes
+		this.newNote(opts.presentationId);
 
 		if (opts.slideNo) {
 			this.newSlide(opts.slideNo);
@@ -103,8 +106,9 @@ var presenter = {
 		note.id = id;
 		note.content = (presentation.notes[0]).note;
 		note.title = titleRegEx.exec(note.content);
+		note.title = note.title[note.title.length - 1];
 
-		return $('#noteTmpl').tmpl(note);
+		$('#noteTmpl').tmpl(note).appendTo('header');
 	},
 
 	// build the nav and append it to the header
