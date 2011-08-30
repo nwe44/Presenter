@@ -233,6 +233,9 @@ header{
 	z-index: 2;
 }
 
+.touch header{
+	height: 44px;
+}
 #main{
 	width: 100%;
 	height: 100%;
@@ -270,9 +273,12 @@ header{
 	background-image: url(../img/sprite.png);
 	background-position: 0 0;
 	left: 18px;
-	z-index: 2;
+	z-index: 99;
 	position: absolute;
 	bottom:6px;
+}
+.touch .header-icon{
+	bottom:13px;
 }
 .header-icon:hover{
 	background-position: 0 -18px;
@@ -292,6 +298,9 @@ header{
 	z-index: 1000;
 	padding: 5px;
 	display: none;
+}
+.touch .popover{
+	bottom: 39px;
 }
 .popover-visible{
 	display: block;
@@ -397,7 +406,12 @@ header{
 }
 .nav-item-link{
 	display: block;
-	padding: 10px;
+	padding: 0 10px;
+	line-height: 17px;
+}
+
+.touch .nav-item-link{
+	line-height: 43px;
 }
 .nav-item-link-active{
 	background: #fff;;
@@ -407,14 +421,14 @@ header{
    Note
    ========================================================================== */
 .header-icon-note{
-	left: 43px;
+	left: 84px;
 	background-position: -18px 0;
 }
 .header-icon-note:hover{
 	background-position: -18px -18px;
 }
 .popover-wrapper-note{
-	left: 30px;
+	left: 70px;
 }
 .popover-wrapper-note .content{
 	padding: 40px 0;
@@ -468,9 +482,10 @@ code{
 	left:0;
 	bottom: 30px;
 	top:0;
-	
 }
-
+.touch .horizontal-carousel{
+	bottom:44px;
+}
 .horizontal-carousel-hidden{
 	left:-100%;
 }
@@ -495,6 +510,9 @@ code{
 	top:0;
 	z-index: 20;
 	left: 0;
+}
+.touch .slidecontrols{
+	display: none;
 }
 .slidecontrols li:first-child{
 	right: 14px;
@@ -549,6 +567,9 @@ code{
 	-o-transition: all 0.5s ease-in-out;	
 	transition: all 0.5s ease-in-out;
 }
+.touch .carousel-tabs{
+	height: 44px;
+}
 .carousel-tabs:hover{
 	opacity: 1;
 }
@@ -579,7 +600,10 @@ code{
 	-o-transition: background 0.5s ease-in-out;
 	transition: background 0.5s ease-in-out;
 	border: 1px solid #ccc;
-
+}
+.touch .carousel-tabs li a{
+	height: 36px;
+	line-height: 36px;
 }
 .boxshadow .carousel-tabs li a{
      -moz-box-shadow: 0px 0px 4px #ccc; 
