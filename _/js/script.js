@@ -92,6 +92,7 @@ var presenter = {
 	},
 
 	// change slide position
+	// TODO: should this function be named "nextSlide" ?
 	newSlide : function (slideNo) {
 		$('.carousel-tabs li').eq(slideNo).find('a').click();
 	},
