@@ -66,7 +66,7 @@ var presenter = {
 			status = that.status;
 
 		$('#main').html('');
-		$('.note-current').removeClass('note-current')
+		$('.note-current').removeClass('note-current');
 		$('#' + opts.presentationId + "-note").addClass('note-current');
 
 		$('#presentationTmpl').tmpl(opts.presentation).appendTo('#main');
