@@ -26,7 +26,6 @@ var presenter = {
 			// if the menu state is undefined
 			// set to true to open it
 			if (typeof(state.m) == "undefined") {
-				console.log('was undefined');
 				state.m = true;
 			} else {
 				state.m = (state.m == "true") ? false : true;
