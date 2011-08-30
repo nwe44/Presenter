@@ -7,24 +7,21 @@ var presenter = {
 	status : {},
 
 	init : function () {
-		var $nav = this.generateNav();
-
-		$('header').append($nav);
+		this.generateNav();
 
 		$(".main-nav a").click(function(e){
 			e.preventDefault();
 			var href = $(this).attr( "href" );
 			// Push this URL "state" onto the history hash.
-		
+			$('.header-icon-menu').click();
 			$.bbq.pushState({ p: href.substr(1),  s: "" });
 
 			return false;
 		});
 
-		$('.nav-toggle').click(function(e){
+		$('.header-icon-menu').click(function(e){
 			e.preventDefault();
 			var state =  $.bbq.getState();
-
 			// toggle the menu state
 			// if the menu state is undefined
 			// set to true to open it
@@ -45,7 +42,7 @@ var presenter = {
 	},
 
 	newMenuStatus : function () {
-		$('header').toggleClass('minimized');
+		$('.popover-wrapper-nav .popover').toggleClass('popover-visible');
 		$('body').toggleClass('header-visible');
 		if ($('body').hasClass('header-visible')) {
 			$('.note-minimized').removeClass('note-minimized');
@@ -97,56 +94,40 @@ var presenter = {
 		$('.carousel-tabs li').eq(slideNo).find('a').click();
 	},
 
-	// build the nav
-	// TODO: convert this to jQuery TMPL to separate concerns
+	// build a new note
+	newNote : function (id) {
+		var presentation = presentations[id],
+			note = {},
+			titleRegEx = new RegExp("(<h1[^>]*>(.*)</h1>)");
+
+		note.id = id;
+		note.content = (presentation.notes[0]).note;
+		note.title = titleRegEx.exec(note.content);
+
+		return $('#noteTmpl').tmpl(note);
+	},
+
+	// build the nav and append it to the header
+	// TODO: consider building the original object to remove the need for this
 	generateNav : function () {
-		var $presentation,
-			$presentationNote,
-			$presentationNoteLink,
-			$presentationLink,
-			$nav = $("<ul />", {'class' : 'main-nav'});
+		var processedPresentations = { list : [] };
 
+		// orgainize a new object that's easier to work with in jQuery tmpl
+		// in other words; an array
 		for (var key in presentations) {
-
 			if (presentations.hasOwnProperty(key) && presentations[key].path) {
-				var obj = presentations[key],
-					notes = obj.notes,
-					title = "";
+				var presentation = presentations[key],
+					note = (presentation.notes[0]).note,
+					titleRegEx = new RegExp("(<h1[^>]*>(.*)</h1>)");
 
-				$presentation = $('<li />', {
-					'class': "nav-item"});
-
-				if (typeof(notes) != "undefined") {
-					$presentationNote = $('<div />', {
-						'class': "note",
-						'id': key + "-note",
-						html: (notes[0]).note});
-
-					title = $presentationNote.find('h1').text() || $((notes[0]).note);
-
-					$presentationLink = $('<a />', {
-						'class': "nav-item-link",
-						'href': "#" + key,
-						'id': key,
-						text: title});
-
-					$('body')
-						.append($presentationNote);
-				} else {
-					$presentationLink = $('<a />', {
-						'id': key,
-						'class': "nav-item-link",
-						'href': "#" + key,
-						text: key});
-				}
-
-				$presentation
-					.prepend($presentationLink);
-
-				$nav.append($presentation);
+				presentation.title = titleRegEx.exec(note);
+				presentation.title = presentation.title[presentation.title.length - 1];
+				presentation.id = key;
+				processedPresentations.list.push(presentation);
 			}
 		}
-		return $nav;
+
+		$('#mainNavTmpl').tmpl(processedPresentations).appendTo('header');
 	},
 
 	pushSlideNo : function () {
@@ -184,15 +165,11 @@ $(window).bind( "hashchange", function(e) {
 		try {
 			// md5('contents') === "98bf7d8c15784f0a3d63204441e1e2aa"
 			// I know this is inellegant, but it's a temporary solution
-			
 			for (var i = 0, l = presentations['98bf7d8c15784f0a3d63204441e1e2aa'].notes.length; i < l; i += 1) {
 				liveContent += (presentations['98bf7d8c15784f0a3d63204441e1e2aa'].notes[i]).note;
 			}
-			$presentationNote = $('<div />', {
-					'class': "note note-current",
-					html: liveContent
-					});
-			$('body').addClass('header-visible').append($presentationNote);
+
+			$('#main').html(liveContent);
 		} catch (err) {
 			console.log(err);
 		}

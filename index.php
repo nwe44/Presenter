@@ -40,8 +40,7 @@ include_once "_/includes/markdown.php";
 
   <div id="container">
     <header class="minimized">
-	<h3>Navigation</h3>
-	
+
     </header>
     <a href="#" class="nav-toggle">Navigation toggle</a>
     <div id="main" role="main">
@@ -150,7 +149,44 @@ echo "<script> var presentations = " . $directories . ";</script>";
 			</ul>
 		</div>
 		<div class="ir throbber"></div>
-	</script> 
+	</script>
+
+	<script id="mainNavTmpl" type="text/x-jquery-tmpl"> 
+		<div class="popover-wrapper popover-wrapper-nav">
+			<div class="popover above popover-visible">
+				<div class="arrow"></div>
+				<div class="inner">
+					<h3 class="title">Presentations</h3>
+					<nav class="content">
+						<ul class="main-nav">
+						{{each presentations}}
+						{{if $value.id}}
+						<li class="nav-item">
+							<a class="nav-item-link" href="#${$value.id}" id="${$value.id}" title="">${$value.title}</a>
+						</li>
+						{{/if}}
+						{{/each}}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<a class="header-icon header-icon-menu ir"></a>
+	</script>
+
+	<script id="noteTmpl" type="text/x-jquery-tmpl"> 
+		<div class="popover-wrapper popover-wrapper-note" id="#${$id}-note">
+			<div class="popover below">
+				<div class="arrow"></div>
+				<div class="inner">
+					<h3 class="title">${title}</h3>
+					<div class="content">
+					${content}
+					</div>
+				</div>
+			</div>
+        </div>
+	</script>
 
 
 </body>
