@@ -119,6 +119,15 @@ var presenter = {
 		note.title = titleRegEx.exec(note.content);
 		note.title = note.title[note.title.length - 1];
 
+		// remove the old note, if any
+		$('.popover-wrapper-note').remove();
+
+		// add a toggle switch if there isn't one
+		if (! $('header .header-icon-note').length) {
+			$('header').append('<a class="header-icon header-icon-note ir"></a>');
+		}
+
+		// place the new note
 		$('#noteTmpl').tmpl(note).appendTo('header');
 	},
 
