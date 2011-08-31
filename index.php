@@ -102,7 +102,7 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 					$fileInfo['note'] = Markdown(file_get_contents($path . "/" . $file));
 					$structure_array[md5($path)]['notes'][] = $fileInfo;
 				} elseif(stripos($fileInfo['mimetype'], "image") === 0) {
-					$structure_array[md5($path)]['images'][] = $fileInfo;
+					$structure_array[md5($path)]['images'][$file] = $fileInfo;
 
 				}
 
@@ -113,7 +113,6 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 		finfo_close($finfo);
 	}
 
-	
 	closedir( $dh ); 
 	return $structure_array;
 	// Close the directory handle 
