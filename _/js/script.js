@@ -74,7 +74,16 @@ var presenter = {
 	// load some new content
 	newContent : function (opts) {
 		var that = this,
-			status = that.status;
+			status = that.status,
+			sortable = [];
+
+		if (!opts.presentation.sortedImages) {
+			// TODO Someday my php will be good enough that I don't need to do this.
+			for (var fileName in opts.presentation.images) {
+				sortable.push(opts.presentation.images[fileName]);
+			}
+			opts.presentation.sortedImages = sortable.sort();
+		}
 
 		$('#main').html('');
 		$('.popover-wrapper-note').remove();
