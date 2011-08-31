@@ -53,11 +53,11 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 a { color: #d20052; text-decoration: none;}
 a:visited { color: #d20052; }
-a:hover { color: #0c3f59; }
+.no-touch a:hover { color: #0c3f59; }
 a:focus { outline: thin dotted; }
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
-a:hover, a:active { outline: 0; }
+.no-touch a:hover, a:active { outline: 0; }
 
 
 /* =============================================================================
@@ -294,7 +294,7 @@ header{
 .touch .header-icon{
 	bottom:13px;
 }
-.header-icon:hover{
+.no-touch .header-icon:hover{
 	background-position: 0 -18px;
 }
 /* ==========================================================================
@@ -406,7 +406,7 @@ header{
 	position: absolute;
 	left: auto;
 }
-.header-icon-close:hover{
+.no-touch .header-icon-close:hover{
 	background-position: -54px -18px;
 }
 /* ==========================================================================
@@ -451,7 +451,7 @@ header{
 .touch .header-icon-note{
 	left: 84px;
 }
-.header-icon-note:hover{
+.no-touch .header-icon-note:hover{
 	background-position: -18px -18px;
 }
 .popover-wrapper-note{
@@ -528,6 +528,9 @@ code{
 	top:0;
 	z-index: 10;
 }
+.touch .horizontal-carousel-slider{
+	bottom: 45px;
+}
 .horizontal-carousel-slide{
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -552,10 +555,6 @@ code{
 	right: 18px;
 	left: auto;
 }
-.carousel-next:hover,
-.carousel-prev:hover{
-/* 	background: rgba(0,0,0,0.2); */
-}
 .carousel-next,
 .carousel-prev{
 	width: 18px;
@@ -574,18 +573,18 @@ code{
 .carousel-next{
 	background-position: -90px 0;
 }
-.carousel-next:hover{
+.not-touch .carousel-next:hover{
 	background-position: -90px -18px;
 }
-.carousel-prev:hover{
+.no-touch .carousel-prev:hover{
 	background-position: -72px -18px;
 }
 .carousel-disabled.carousel-prev,
-.carousel-disabled.carousel-prev:hover{
+.no-touch .carousel-disabled.carousel-prev:hover{
 	background-position: -72px -36px;
 }
 .carousel-disabled.carousel-next,
-.carousel-disabled.carousel-next:hover{
+.no-touch .carousel-disabled.carousel-next:hover{
 	background-position: -90px -36px;
 }
 
@@ -617,12 +616,14 @@ code{
 }
 .touch .carousel-tabs{
 	height: 44px;
+	right: 18px;
 }
-.carousel-tabs:hover{
+.no-touch .carousel-tabs:hover{
 	opacity: 1;
 }
 .carousel-tabs li{
 	display: none;
+	line-height: 29px;
 }
 .touch .carousel-tabs a{
 	height: 44px;
@@ -635,7 +636,7 @@ code{
 	display: block;
 	background: transparent;
 	width: auto;
-	line-height: 29px;
+
 	height: auto;
 	color:#999;
 	padding: 0;
