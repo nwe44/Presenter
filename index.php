@@ -85,13 +85,11 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 				if (function_exists('finfo_open')) {
 					// corral our file info
 					$fileInfo = array(
-						'filename' => $file, 
 						'url' => $path . "/" . $file,
 						'mimetype' => finfo_file($finfo, $path . "/" .$file)
 						);
 				} else { // backwards compatibilty
 					$fileInfo = array(
-						'filename' => $file, 
 						'url' => $path . "/" . $file,
 						'mimetype' => mime_content_type($path . "/" .$file)
 						);				
