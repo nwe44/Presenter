@@ -164,6 +164,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 						</ul>
 					</nav>
 				</div>
+				<a class="header-icon header-icon-close ir"></a>
 			</div>
 		</div>
 	</script>
@@ -178,6 +179,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 					{{html content}}
 					</div>
 				</div>
+				<a class="header-icon header-icon-close ir"></a>
 			</div>
 		</div>
 	</script>

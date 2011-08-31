@@ -384,7 +384,17 @@ header{
 .popover .content p, .popover .content ul, .popover .content ol {
 	margin-bottom: 0;
 }
-
+.header-icon-close{
+	background-position: -54px 0;
+	top:15px;
+	right: 15px;
+	z-index: 99;
+	position: absolute;
+	left: auto;
+}
+.header-icon-close:hover{
+	background-position: -54px -18px;
+}
 /* ==========================================================================
    Nav
    ========================================================================== */

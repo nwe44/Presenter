@@ -44,6 +44,11 @@ var presenter = {
 			$('.popover-wrapper-note .popover').toggleClass('popover-visible')
 			return false;
 		});
+		$('.header-icon-close').live('click', function(e){
+			e.preventDefault();
+			$(this).parent().removeClass('popover-visible');
+			return false;
+		});
 
 
 
