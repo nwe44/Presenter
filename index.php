@@ -44,6 +44,7 @@ include_once "_/includes/markdown.php";
 		</header>
 
 		<div id="main" role="main"></div>
+		<footer></footer>
   </div> <!--! end of #container -->
 
 
