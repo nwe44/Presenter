@@ -580,8 +580,13 @@ code{
 .carousel-prev:hover{
 	background-position: -72px -18px;
 }
-.carousel-disabled{
-	display: none;
+.carousel-disabled.carousel-prev,
+.carousel-disabled.carousel-prev:hover{
+	background-position: -72px -36px;
+}
+.carousel-disabled.carousel-next,
+.carousel-disabled.carousel-next:hover{
+	background-position: -90px -36px;
 }
 
 .throbber{
