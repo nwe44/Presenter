@@ -77,7 +77,7 @@ var presenter = {
 			status = that.status;
 
 		$('#main').html('');
-		$('popover-wrapper-note').remove();
+		$('.popover-wrapper-note').remove();
 
 		$('#presentationTmpl').tmpl(opts.presentation).appendTo('#main');
 
