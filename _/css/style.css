@@ -523,6 +523,7 @@ code{
 }
 
 .horizontal-carousel-slider{
+ 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 	position: absolute;
 	bottom: 31px;
 	top:0;
