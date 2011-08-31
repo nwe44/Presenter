@@ -39,7 +39,7 @@ include_once "_/includes/markdown.php";
 <body>
 
 	<div id="container">
-		<header class="minimized">
+		<header>
 			<a class="header-icon header-icon-menu ir"></a>
 		</header>
 
