@@ -509,6 +509,9 @@ header{
 .popover-wrapper-nav li{
 	border-bottom: 1px solid #ccc;
 }
+.oldie .popover-wrapper-nav li{
+	background: #f1f1f1;
+}
 .popover-wrapper-nav li:last-child{
 	border: 0;
 }
