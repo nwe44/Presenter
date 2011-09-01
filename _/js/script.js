@@ -179,7 +179,7 @@ $(window).bind( "hashchange", function(e) {
 
 	// No presentation? We're on the front page
 	if (!presentation) {
-		$('header').removeClass('minimized');
+		$('.popover-wrapper-nav .popover').addClass('popover-visible');
 		try {
 			for (var i = 0, l = presentations['contents'].notes.length; i < l; i += 1) {
 				liveContent += (presentations['contents'].notes[i]).note;
