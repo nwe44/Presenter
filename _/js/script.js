@@ -9,13 +9,18 @@ var presenter = {
 	init : function () {
 		this.generateNav();
 
-		$(".main-nav a").click(function(e){
+		$(".nav-item-presentation").click(function(e){
 			e.preventDefault();
 			var href = $(this).attr( "href" );
 			// Push this URL "state" onto the history hash.
 			$('.header-icon-menu').click();
 			$.bbq.pushState({ p: href.substr(1),  s: "" });
 
+			return false;
+		});
+		$(".nav-item-home").click(function(e){
+			e.preventDefault();
+			$.bbq.removeState();
 			return false;
 		});
 

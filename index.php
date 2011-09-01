@@ -154,10 +154,13 @@ echo "<script> var presentations = " . $directories . ";</script>";
 					<h3 class="title">Presentations</h3>
 					<nav class="content">
 						<ul class="main-nav">
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-home" href="#"  title="">Home</a>
+						</li>
 						{{each presentations}}
 						{{if $value.id}}
 						<li class="nav-item">
-							<a class="nav-item-link" href="#${$value.id}" id="${$value.id}" title="">${$value.title}</a>
+							<a class="nav-item-link nav-item-presentation" href="#${$value.id}" id="${$value.id}" title="">${$value.title}</a>
 						</li>
 						{{/if}}
 						{{/each}}
