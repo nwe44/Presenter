@@ -246,6 +246,7 @@ var presenter = {
 			case 34: // Page down
 				// this sort of thing is a sign of a badly constructed data object.
 				// TODO: rebuild the data object
+				state.s = state.s || 0;
 				if (presentations[presenter.status.p] && presentations[presenter.status.p].sortedImages.length - 1 > state.s) {
 					state.s++;
 					$.bbq.pushState(state);
