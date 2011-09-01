@@ -77,17 +77,8 @@ include_once "_/includes/markdown.php";
   <script src="_/js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body>
-
-	<div id="container">
-		<header>
-			<a class="header-icon header-icon-menu ir"></a>
-		</header>
-
-		<div id="main" role="main"></div>
-		<footer></footer>
-  </div> <!--! end of #container -->
-
+<body><div id="container"><header><a class="header-icon header-icon-menu ir"></a></header><div id="main" role="main"></div><footer></footer></div>
+<!-- That's it, this is one of those javascript sites. You'll want to look in the script files to see what's going on. :) -->
 
   <!-- JavaScript at the bottom for fast page loading -->
 <?php
