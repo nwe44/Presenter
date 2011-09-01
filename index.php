@@ -63,7 +63,7 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 	$ignore = array( 'cgi-bin', '.', '..' ); 
 	// Directories to ignore when listing output. Many hosts 
 	// will deny PHP access to the cgi-bin. 
-
+	
 	$dh = @opendir( $path ); 
 	// Open the directory to the handle $dh 
 
@@ -78,6 +78,7 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 				// add the directory to our array
 				$structure_array[urlencode($path . "/" . $file)]['path'] = $path . "/" . $file;
+				$structure_array[urlencode($path . "/" . $file)]['uniqueId'] = md5($path . "/" . $file);
 
 				// parse the directory
 				$structure_array = getDirectory( "$path/$file", ($level+1), $structure_array); 
@@ -155,12 +156,12 @@ echo "<script> var presentations = " . $directories . ";</script>";
 					<nav class="content">
 						<ul class="main-nav">
 						<li class="nav-item">
-							<a class="nav-item-link nav-item-home" href="#"  title="">Home</a>
+							<a class="nav-item-link nav-item-home" href="#" id="home-button" title="">Home</a>
 						</li>
 						{{each presentations}}
 						{{if $value.id}}
 						<li class="nav-item">
-							<a class="nav-item-link nav-item-presentation" href="#${$value.id}" id="${$value.id}" title="">${$value.title}</a>
+							<a class="nav-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>
 						</li>
 						{{/if}}
 						{{/each}}

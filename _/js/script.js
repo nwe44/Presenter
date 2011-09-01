@@ -79,6 +79,10 @@ var presenter = {
 			opts.presentation.sortedImages = sortable.sort();
 		}
 
+		//	highlight the active link
+		$(".main-nav a").removeClass('nav-item-link-active');
+		$('#' + opts.presentation.uniqueId).addClass('nav-item-link-active');
+
 		$('#main').html('');
 		$('.popover-wrapper-note').remove();
 
@@ -177,12 +181,11 @@ $(window).bind( "hashchange", function(e) {
 		present = presenter,
 		liveContent = "";
 
-	$(".main-nav a").removeClass('nav-item-link-active');
-	$('#' + presentationId).addClass('nav-item-link-active');
-
 	// now let's find out what changed
 
 	// No presentation? We're on the front page
+	// TODO: all this markup creation and class swapping doesn't belong here
+	// need to move this outside of the hashchange handler
 	if (!presentation) {
 		$('.popover-wrapper-nav .popover').addClass('popover-visible');
 		try {
@@ -191,6 +194,8 @@ $(window).bind( "hashchange", function(e) {
 			}
 
 			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
+			$(".main-nav a").removeClass('nav-item-link-active');
+			$('#home-button').addClass('nav-item-link-active');
 		} catch (err) {
 			console.log(err);
 		}
