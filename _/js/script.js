@@ -194,7 +194,7 @@ $(window).bind( "hashchange", function(e) {
 			}
 
 			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
-			$(".main-nav a").removeClass('nav-item-link-active');
+			$("header a.nav-item-link-active").removeClass('nav-item-link-active');
 			$('#home-button').addClass('nav-item-link-active');
 		} catch (err) {
 			console.log(err);
