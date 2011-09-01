@@ -312,7 +312,7 @@ $(window).bind( "hashchange", function(e) {
 //		console.log('saw nothing', hash, status);
 	}
 
-	if (viewportSize != status.v) {
+	if (viewportSize != status.v && typeof(viewportSize) != "undefined") {
 			present['makeViewport' + viewportSize]();
 	}
 
