@@ -216,7 +216,12 @@ var presenter = {
 	},
 	
 	listenForKeyEvents : function () {
-		document.addEventListener('keydown', presenter.keyEventHandler, false);	
+		if (document.addEventListener){  
+			document.addEventListener('keydown', presenter.keyEventHandler, false);
+		} else if (document.attachEvent){
+			document.attachEvent('keydown', presenter.keyEventHandler);
+		}
+
 	}
 
 };
