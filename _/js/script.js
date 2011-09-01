@@ -229,7 +229,7 @@ $(window).bind( "hashchange", function(e) {
 		slideNo = hash.s,
 		presentation = presentations[presentationId],
 		status = presenter.status,
-		present = presenter;
+		present = presenter; // local variable for better minification
 
 	// now let's find out what changed
 
