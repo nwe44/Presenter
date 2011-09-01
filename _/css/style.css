@@ -514,8 +514,8 @@ header{
 }
 .nav-item-link{
 	display: block;
-	padding: 0 10px;
-	line-height: 25px;
+	padding: 0 2.7692307692em;
+	line-height: 36px;
 }
 
 .touch .nav-item-link{
