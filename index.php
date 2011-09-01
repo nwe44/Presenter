@@ -53,6 +53,8 @@ include_once "_/includes/markdown.php";
 
 function getDirectory( $path = '.', $level = 0, $structure_array = array ()){ 
 
+	$encoded_path = urlencode($path);
+
 	if (function_exists('finfo_open')) {
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);	
 	}
@@ -75,7 +77,7 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 			// Its a directory, so we need to keep reading down... 
 
 				// add the directory to our array
-				$structure_array[md5($path . "/" . $file)]['path'] = $path . "/" . $file;
+				$structure_array[urlencode($path . "/" . $file)]['path'] = $path . "/" . $file;
 
 				// parse the directory
 				$structure_array = getDirectory( "$path/$file", ($level+1), $structure_array); 
@@ -98,9 +100,9 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 				if (stripos($fileInfo['mimetype'], "text") === 0) {
 					$fileInfo['note'] = Markdown(file_get_contents($path . "/" . $file));
-					$structure_array[md5($path)]['notes'][] = $fileInfo;
+					$structure_array[$encoded_path]['notes'][] = $fileInfo;
 				} elseif(stripos($fileInfo['mimetype'], "image") === 0) {
-					$structure_array[md5($path)]['images'][$file] = $path . "/" . $file;
+					$structure_array[$encoded_path]['images'][$file] = $path . "/" . $file;
 
 				}
 
