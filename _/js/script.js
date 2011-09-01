@@ -234,8 +234,6 @@ $(window).bind( "hashchange", function(e) {
 	// now let's find out what changed
 
 	// No presentation? We're on the front page
-	// TODO: all this markup creation and class swapping doesn't belong here
-	// need to move this outside of the hashchange handler
 	if (!presentation) {
 		present.newFrontPage();
 
