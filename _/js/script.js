@@ -109,6 +109,22 @@ var presenter = {
 		}
 	},
 
+	newFrontPage : function () {
+		var liveContent = "";
+		$('.popover-wrapper-nav .popover').addClass('popover-visible');
+		try {
+			for (var i = 0, l = presentations['contents'].notes.length; i < l; i += 1) {
+				liveContent += (presentations['contents'].notes[i]).note;
+			}
+
+			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
+			$("header a.nav-item-link-active").removeClass('nav-item-link-active');
+			$('#home-button').addClass('nav-item-link-active');
+		} catch (err) {
+			console.log(err);
+		}
+	},
+
 	// change slide position
 	// TODO: should this function be named "nextSlide" ?
 	newSlide : function (slideNo) {
@@ -213,8 +229,7 @@ $(window).bind( "hashchange", function(e) {
 		slideNo = hash.s,
 		presentation = presentations[presentationId],
 		status = presenter.status,
-		present = presenter,
-		liveContent = "";
+		present = presenter;
 
 	// now let's find out what changed
 
@@ -222,18 +237,7 @@ $(window).bind( "hashchange", function(e) {
 	// TODO: all this markup creation and class swapping doesn't belong here
 	// need to move this outside of the hashchange handler
 	if (!presentation) {
-		$('.popover-wrapper-nav .popover').addClass('popover-visible');
-		try {
-			for (var i = 0, l = presentations['contents'].notes.length; i < l; i += 1) {
-				liveContent += (presentations['contents'].notes[i]).note;
-			}
-
-			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
-			$("header a.nav-item-link-active").removeClass('nav-item-link-active');
-			$('#home-button').addClass('nav-item-link-active');
-		} catch (err) {
-			console.log(err);
-		}
+		present.newFrontPage();
 
 	// no status? Then it's first page load via a link, run everything.
 	// check there's somewhere to go, and if we're already there.
