@@ -619,6 +619,11 @@ code{
 	top:0;
 }
 .horizontal-carousel-sized{
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+.boxshadow .horizontal-carousel-sized{
+	border:0;
 	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
