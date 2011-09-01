@@ -218,6 +218,19 @@ body{
 	height: 100%;
 	overflow: hidden;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+	color: #555555;
+	line-height: 1.3846153846em;
+}
+p,
+ul,
+ol{
+	padding: 0;
+	margin: 0 0 0.6923076923em 0;
+}
+blockquote{
+	margin: 0.6923076923em 0 0.6923076923em 0;
+	padding: 0.6923076923em 0 0.6923076923em 1.3846153846em;
+	border-left: 2px solid #cfcfcf;
 }
 /* ==========================================================================
    Footer
@@ -296,6 +309,74 @@ header{
 }
 .no-touch .header-icon:hover{
 	background-position: 0 -18px;
+}
+/* ==========================================================================
+   front page
+   ========================================================================== */
+.front-page{
+	position: absolute;
+	width: 100%;
+	padding: 0;
+	left: 0;
+	top:0;
+	bottom:31px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: #f1f1f1;
+	background-image: -webkit-linear-gradient( rgba(242, 242, 242, 0.9), rgba(222, 222, 222, 0.1));
+}
+.front-page-wrapper{
+	width: 600px;
+	left: 50%;
+	margin-left: -300px;
+	top:45px;
+	padding-bottom: 45px;
+	position: absolute;
+}
+.front-page-page{
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 45px;
+	background: #fff;
+	border: 1px solid #cfcfcf;
+}
+.boxshadow .front-page-page{
+	border: 0;
+	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);	
+}
+
+.front-page h2{
+	font-size: 1em;
+	color: #333;
+	border-top: 1px solid #cfcfcf;
+	padding: 0.6923076923em 0 0 0;
+	margin: 1.3846153846em 0 1.3846153846em 0;
+}
+.front-page h3,
+.front-page h4,
+.front-page h5,
+.front-page h6,
+.front-page h7{
+	font-size: 1em;
+	color: #555;
+
+	margin: 0 0 0 -1.3846153846em;
+}
+.front-page h4,
+.front-page h5,
+.front-page h6,
+.front-page h7{
+	margin: 0;
+	font-weight: normal;
+	font-style: italic;
+}
+.front-page h4{
+	font-style: normal;
+	font-weight: bold;
 }
 /* ==========================================================================
    Popover
@@ -660,6 +741,60 @@ code{
 
 }
 
+@media only screen and (min-width: 1280px) {
+  /* Style adjustments for viewports 768px and over go here */
+	.front-page-wrapper {
+		width: 900px;
+		margin-left: -450px;
+	}
+	.front-page h1{
+		margin-left: 276px;
+	}
+	.front-page h2,
+	.front-page h3,
+	.front-page h4,
+	.front-page h5,
+	.front-page h6,
+	.front-page h7{
+		width: 258px;
+		margin: 0 0 -1.3846153846em 0;
+		padding-top:1.3846153846em;
+		padding-right: 534px;
+		border-top: 1px solid #cfcfcf; 
+	}
+	.front-page h2 {
+		border-color: #555;
+	}
+	.front-page h4,
+	.front-page h5{
+		border: none;
+		text-align: right;
+		padding-right: 1.3846153846em;
+		width: 240px;
+	}
+	.front-page blockquote,
+	.front-page p,
+	.front-page ul,
+	.front-page ol{
+		margin-left: 276px;
+	}
+	.front-page ul p,
+	.front-page ol p,
+	.front-page code p,
+	.front-page blockquote p{
+		margin-left: 0;
+	}
+	.front-page code{
+	
+	}
+	.front-page h6,
+	.front-page h7{
+		position: absolute;
+		width: 258px;
+		left: 45px;
+		margin: 0 0 1.3846153846em 0;
+	}
+}
 
 
 /* ==|== non-semantic helper classes ========================================

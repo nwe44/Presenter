@@ -185,7 +185,7 @@ $(window).bind( "hashchange", function(e) {
 				liveContent += (presentations['contents'].notes[i]).note;
 			}
 
-			$('#main').html(liveContent);
+			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
 		} catch (err) {
 			console.log(err);
 		}
