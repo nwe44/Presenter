@@ -1,5 +1,52 @@
 <?php
 
+/*
+**    ========================================================================
+**    Presenter - a simple presentation system
+**    ========================================================================
+**    github.com/nwe44/Presenter
+**
+**    This is a program to enable non-technical ftp users to 
+**    create a collection of image slideshows with attached comments.
+**    
+**    At my office there are a number of users who need to be able 
+**    to create slideshows within our our domain. This means a number 
+**    of limitations:
+**
+**    - No code coding knowledge may be required for usage
+**    - No server technology (ie. ability to see/use .htaccess or databases) 
+**      knowledge may be required
+**    - Needs to be locally hosted
+**
+**    Most web hosts provide a gui for password protecting a directory, 
+**    so this is what I'm assuming people will use for security. I can't 
+**    imagine there are many options given the above constraints.
+**
+**
+**    ========================================================================
+**    Installation
+**    ========================================================================
+**
+**    Upload index.php, the "contents" folder and the "_" folder to a 
+**    public directory
+**
+**    Done.
+**
+**    ========================================================================
+**    To create a presentation
+**    ========================================================================
+**
+**    Each sub-directory of "contents" constitutes a presentation, so,
+**
+**    1. Drop images into a sub-directory of the contents folder.
+**    2. Create a text file (with any name) in to the folder created in step 1. 
+**       The contents of this file will be parsed as Markdown, and the h1 element 
+**       will name the presentation.
+**
+*/
+
+
+
 include_once "_/includes/markdown.php";
 
 
