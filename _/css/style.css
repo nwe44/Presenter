@@ -522,7 +522,9 @@ header{
 	line-height: 43px;
 }
 .nav-item-link-active{
-	background: #fff;;
+	background: #fff;
+	color: #333 !important;
+	cursor: default;
 }
 
 /* ==========================================================================
