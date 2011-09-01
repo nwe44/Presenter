@@ -16,7 +16,8 @@ var presenter = {
 			var href = $(this).attr( "href" );
 			// Push this URL "state" onto the history hash.
 			$('.header-icon-menu').click();
-			$.bbq.pushState({ p: href.substr(1),  s: "" });
+			presenter.status = {};
+			$.bbq.pushState({ p: href.substr(1), });
 
 			return false;
 		});
@@ -307,12 +308,12 @@ $(window).bind( "hashchange", function(e) {
 		present.newSlide(slideNo);
 
 	// error handling
-	} else if (viewportSize != status.v) {
-		present['makeViewport' + viewportSize]();
-
-	// error handling
 	} else {
 //		console.log('saw nothing', hash, status);
+	}
+
+	if (viewportSize != status.v) {
+			present['makeViewport' + viewportSize]();
 	}
 
 	presenter.status = hash;
