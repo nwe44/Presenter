@@ -26,8 +26,8 @@ Each sub-directory of "contents" constitutes a presentation, so,
 ## Current status
 This is more of a UX prototype than a polished piece of programming at the moment. I'm sure there are plenty of bugs, please add any you find to the issue queue. Expect much streamlining of the code. This was quickly mocked up one weekend, I'm sure some of the libraries used are overkill and they will eventually be pruned.
 
-Animations are currently only written in css, so older browsers won't see them. This will change.
+### Plans for v0.2
 
-Moreover, there's a lot of design detailing to be done. Markdown css styling is mostly left up to the html5 normalize css at the moment, and the panel widths need to be rationalized.
-
-Ultimately a production release of this would inline all css and js. I'm also considering doing a version of the interface using no images so that the installation process is just uploading the index.php file.
+1. Add a dynamic .appcache document.
+2. Produce a production version with inlined and minified css/js 
+3. Simplify settings UI.
