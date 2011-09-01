@@ -20,6 +20,18 @@ var presenter = {
 
 			return false;
 		});
+		$(".nav-item-viewport").click(function(e){
+			e.preventDefault();
+			$.bbq.pushState({ v: $(this).attr( "id" )});
+			return false;
+		});
+		$(".header-icon-settings").click(function(e){
+			e.preventDefault();
+			$('.header-icon-menu').click();
+			$('#settings-popover').addClass('popover-visible');
+			return false;
+		});
+
 		$(".nav-item-home").click(function(e){
 			e.preventDefault();
 			$.bbq.removeState();
@@ -53,6 +65,43 @@ var presenter = {
 		// loaded with.
 		$(window).trigger( "hashchange" );
 	},
+
+	makeViewportNormal : function () {
+		$('.horizontal-carousel').css({
+			'width': '100%',
+			'left': "0px",
+			'margin-left' : "0px"
+			}).removeClass('horizontal-carousel-sized');
+	},
+	makeViewportMini : function () {
+		$('.horizontal-carousel').css({
+			'width': '480px',
+			'left': "50%",
+			'margin-left' : "-240px"
+			}).addClass('horizontal-carousel-sized');
+	},
+	makeViewportSmall : function () {
+		$('.horizontal-carousel').css({
+			'width': '768px',
+			'left': "50%",
+			'margin-left' : "-384px"
+			}).addClass('horizontal-carousel-sized');
+	},
+	makeViewportMedium : function () {
+		$('.horizontal-carousel').css({
+			'width': '1024px',
+			'left': "50%",
+			'margin-left' : "-512px"
+			}).addClass('horizontal-carousel-sized');
+	},
+	makeViewportLarge : function () {
+		$('.horizontal-carousel').css({
+			'width': '1280px',
+			'left': "50%",
+			'margin-left' : "-640px"
+			}).addClass('horizontal-carousel-sized');
+	},
+
 
 	newMenuStatus : function () {
 		$('.popover-wrapper-nav .popover').toggleClass('popover-visible');
@@ -232,6 +281,7 @@ $(window).bind( "hashchange", function(e) {
 	var hash = $.bbq.getState(),
 		presentationId = hash.p,
 		slideNo = hash.s,
+		viewportSize = hash.v,
 		presentation = presentations[presentationId],
 		status = presenter.status,
 		present = presenter; // local variable for better minification
@@ -255,6 +305,10 @@ $(window).bind( "hashchange", function(e) {
 	// most likely by using the back button.
 	} else if (slideNo != status.s) {
 		present.newSlide(slideNo);
+
+	// error handling
+	} else if (viewportSize != status.v) {
+		present['makeViewport' + viewportSize]();
 
 	// error handling
 	} else {

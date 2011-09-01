@@ -220,6 +220,7 @@ body{
 	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
 	color: #555555;
 	line-height: 1.3846153846em;
+	background: #f1f1f1;
 }
 p,
 ul,
@@ -484,14 +485,30 @@ header{
 }
 .header-icon-close{
 	background-position: -54px 0;
-	top:15px;
-	right: 15px;
+	top: 15px;
+	left: 15px;
 	z-index: 99;
 	position: absolute;
-	left: auto;
+	
 }
 .no-touch .header-icon-close:hover{
 	background-position: -54px -18px;
+}
+.header-icon-settings{
+	background-position: -36px 0;
+	right:15px;
+	top:15px;
+	left: auto;
+	z-index: 99;
+	position: absolute;
+}
+.no-touch .header-icon-settings:hover{
+	background-position: -36px -18px;
+}
+.popover-centered{
+	top:40%;
+	left: 50%;
+	margin-left: -143px;
 }
 /* ==========================================================================
    Nav
@@ -600,6 +617,11 @@ code{
 	bottom: 0;
 	height: 100%;
 	top:0;
+}
+.horizontal-carousel-sized{
+	-webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
 .touch .horizontal-carousel{
 	bottom:44px;

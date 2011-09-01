@@ -202,8 +202,34 @@ echo "<script> var presentations = " . $directories . ";</script>";
 						</ul>
 					</nav>
 				</div>
+				<a class="header-icon header-icon-settings ir" href="#" id="settings-button" title="">Home</a>
 				<a class="header-icon header-icon-close ir"></a>
 			</div>
+		</div>
+		<div class="popover popover-centered" id="settings-popover">
+			<div class="inner">
+				<h3 class="title">Settings</h3>
+				<nav class="content">
+					<ul class="settings-nav">
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-viewport" href="#" id="Mini" title="">Make viewport mini</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-viewport" href="#" id="Small" title="">Make viewport small</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-viewport" href="#" id="Medium" title="">Make viewport medium</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-viewport" href="#" id="Large" title="">Make viewport large</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-item-link nav-item-viewport" href="#" id="Normal" title="">Reset viewport</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<a class="header-icon header-icon-close ir"></a>
 		</div>
 	</script>
 
