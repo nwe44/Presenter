@@ -9,6 +9,8 @@ var presenter = {
 	init : function () {
 		this.generateNav();
 
+		this.listenForKeyEvents();
+
 		$(".nav-item-presentation").click(function(e){
 			e.preventDefault();
 			var href = $(this).attr( "href" );
@@ -166,6 +168,39 @@ var presenter = {
 
 		presenter.status.s = index;
 		$.bbq.pushState({ s: index });
+	},
+
+	keyEventHandler : function (e) {
+		var state = $.bbq.getState();
+
+		switch (e.keyCode) {
+			case 39: // Right arrow
+			case 13: // Enter
+			case 32: // Space
+			case 34: // Page down
+				// this sort of thing is a sign of a badly constructed data object.
+				// TODO: rebuild the data object
+				if (presentations[presenter.status.p] && presentations[presenter.status.p].sortedImages.length - 1 > state.s) {
+					state.s++;
+					$.bbq.pushState(state);
+					event.preventDefault();
+				}
+				break;
+
+			case 37: // Left arrow
+			case 8: // Backspace
+			case 33: // Page Up
+				if (state.s > 0) {
+					state.s--;
+					$.bbq.pushState(state);
+					event.preventDefault();
+				}
+				break;
+		}
+	},
+	
+	listenForKeyEvents : function () {
+		document.addEventListener('keydown', presenter.keyEventHandler, false);	
 	}
 
 };
