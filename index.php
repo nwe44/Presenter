@@ -85,18 +85,20 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 			} else {
 
+				$fileInfo = array( 'url' => $path . "/" . $file);
+
+				// corral our file info
+
 				if (function_exists('finfo_open')) {
-					// corral our file info
-					$fileInfo = array(
-						'url' => $path . "/" . $file,
-						'mimetype' => finfo_file($finfo, $path . "/" .$file)
-						);
-				} else { // backwards compatibilty
-					$fileInfo = array(
-						'url' => $path . "/" . $file,
-						'mimetype' => mime_content_type($path . "/" .$file)
-						);				
-				
+					$fileInfo['mimetype'] = finfo_file($finfo, $path . "/" .$file);
+				} elseif (function_exists('mime_content_type')) { // backwards compatibilty
+					$fileInfo['mimetype'] = mime_content_type($path . "/" . $file);
+				} else { // a very basic fallback
+					if (preg_match("/^.*\.jpg/", $file) || preg_match("/^.*\.jpeg/", $file)) {
+						$fileInfo['mimetype'] = "image";
+					} elseif (preg_match("/^.*\.txt/", $file) ||  preg_match("/^.*\.markdown/", $file)) {
+						$fileInfo['mimetype'] = "text";
+					}
 				}
 
 				if (stripos($fileInfo['mimetype'], "text") === 0) {
