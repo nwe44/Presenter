@@ -21,24 +21,13 @@ var presenter = {
 
 		$('.header-icon-menu').click(function(e){
 			e.preventDefault();
-			var state =  $.bbq.getState();
-			// toggle the menu state
-			// if the menu state is undefined
-			// set to true to open it
-			if (typeof(state.m) == "undefined") {
-				state.m = true;
-			} else {
-				state.m = (state.m == "true") ? false : true;
-			}
-			$.bbq.pushState(state);
+			presenter.newMenuStatus();
 			return false;
 		});
 		$('.header-icon-note').live('click', function(e){
 			e.preventDefault();
 			if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
-				var state =  $.bbq.getState();
-				state.m = true;
-				$.bbq.pushState(state);
+				presenter.newMenuStatus();
 			}
 
 			$('.popover-wrapper-note .popover').toggleClass('popover-visible')
@@ -106,10 +95,6 @@ var presenter = {
 
 		if (opts.slideNo) {
 			this.newSlide(opts.slideNo);
-		}
-
-		if (opts.menu == "true" && opts.menu != status.m) {
-			that.newMenuStatus();
 		}
 	},
 
@@ -182,7 +167,6 @@ $(window).bind( "hashchange", function(e) {
 	var hash = $.bbq.getState(),
 		presentationId = hash.p,
 		slideNo = hash.s,
-		menu = hash.m,
 		presentation = presentations[presentationId],
 		status = presenter.status,
 		present = presenter,
@@ -212,18 +196,13 @@ $(window).bind( "hashchange", function(e) {
 		present.newContent({
 			presentation : presentation, 
 			presentationId : presentationId, 
-			slideNo : slideNo,
-			menu : menu
+			slideNo : slideNo
 			});
 
 	// User has changed slide number
 	// most likely by using the back button.
 	} else if (slideNo != status.s) {
 		present.newSlide(slideNo);
-
-	// toggle the menu
-	} else if (menu != status.m) {
-		present.newMenuStatus();
 
 	// error handling
 	} else {

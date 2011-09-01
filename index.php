@@ -148,7 +148,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 
 	<script id="mainNavTmpl" type="text/x-jquery-tmpl"> 
 		<div class="popover-wrapper popover-wrapper-nav">
-			<div class="popover above popover-visible">
+			<div class="popover above">
 				<div class="arrow"></div>
 				<div class="inner">
 					<h3 class="title">Presentations</h3>
