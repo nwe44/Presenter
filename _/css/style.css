@@ -775,12 +775,15 @@ code{
 	.front-page blockquote,
 	.front-page p,
 	.front-page ul,
-	.front-page ol{
+	.front-page ol,
+	.front-page pre,
+	.front-page code{
 		margin-left: 276px;
 	}
 	.front-page ul p,
 	.front-page ol p,
 	.front-page code p,
+	.front-page pre code,
 	.front-page blockquote p{
 		margin-left: 0;
 	}
