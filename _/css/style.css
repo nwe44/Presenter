@@ -456,10 +456,11 @@ header{
 	width: 400px;
 }
 .popover .title {
-	background-color: #333;
-	color: #f1f1f1;
+	background-color: #cfcfcc;
+	color: #555;
 	margin: 0;
-	padding: 9px 15px;
+	padding: 0.6923076923em 2.7692307692em;
+	font-size: 1em;
 	line-height: 1;
 	-webkit-border-radius: 3px 3px 0 0;
 	-moz-border-radius: 3px 3px 0 0;
@@ -476,7 +477,9 @@ header{
 	-moz-background-clip: padding-box;
 	background-clip: padding-box;
 }
-.popover .content p, .popover .content ul, .popover .content ol {
+.popover .content p,
+.popover .content ul,
+.popover .content ol {
 	margin-bottom: 0;
 }
 .header-icon-close{
@@ -535,26 +538,23 @@ header{
 .no-touch .header-icon-note:hover{
 	background-position: -18px -18px;
 }
+.popover-wrapper-note .content{
+	padding:1.3846153846em 2.7692307692em 2.7692307692em 2.7692307692em;
+}
 .popover-wrapper-note{
 	left: 30px;
 }
 .touch .popover-wrapper-note{
 	left: 70px;
 }
-.popover-wrapper-note .content{
-	padding: 40px 0;
-}
 .popover-wrapper-note h2,
 .popover-wrapper-note h3,
 .popover-wrapper-note h4,
 .popover-wrapper-note h5,
 .popover-wrapper-note p{
-	padding: 0.5em 20px 0 40px;
+	padding: 0 0 0.6923076923em 0;
 	color:#666;
 	margin:0;
-}
-.popover-wrapper-note p{
-	padding: 0 20px 0.5em 40px;
 }
 .popover-wrapper-note .content h1{
 	display: none;
