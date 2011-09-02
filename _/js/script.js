@@ -231,7 +231,7 @@ var presenter = {
 	},
 
 	keyEventHandler : function (e) {
-		var state = $.bbq.getState()
+		var state = $.bbq.getState(),
 			currentPresentation = presenter.status.p;
 
 		switch (e.keyCode) {
