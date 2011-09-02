@@ -72,35 +72,35 @@ var presenter = {
 			'width': '100%',
 			'left': "0px",
 			'margin-left' : "0px"
-			}).removeClass('horizontal-carousel-sized');
+		}).removeClass('horizontal-carousel-sized');
 	},
 	makeViewportMini : function () {
 		$('.horizontal-carousel').css({
 			'width': '480px',
 			'left': "50%",
 			'margin-left' : "-240px"
-			}).addClass('horizontal-carousel-sized');
+		}).addClass('horizontal-carousel-sized');
 	},
 	makeViewportSmall : function () {
 		$('.horizontal-carousel').css({
 			'width': '768px',
 			'left': "50%",
 			'margin-left' : "-384px"
-			}).addClass('horizontal-carousel-sized');
+		}).addClass('horizontal-carousel-sized');
 	},
 	makeViewportMedium : function () {
 		$('.horizontal-carousel').css({
 			'width': '1024px',
 			'left': "50%",
 			'margin-left' : "-512px"
-			}).addClass('horizontal-carousel-sized');
+		}).addClass('horizontal-carousel-sized');
 	},
 	makeViewportLarge : function () {
 		$('.horizontal-carousel').css({
 			'width': '1280px',
 			'left': "50%",
 			'margin-left' : "-640px"
-			}).addClass('horizontal-carousel-sized');
+		}).addClass('horizontal-carousel-sized');
 	},
 
 
@@ -294,7 +294,7 @@ $(window).bind("hashchange", function (e) {
 			presentation : presentation, 
 			presentationId : presentationId, 
 			slideNo : slideNo
-			});
+		});
 
 	// User has changed slide number
 	// most likely by using the back button.
@@ -307,7 +307,7 @@ $(window).bind("hashchange", function (e) {
 	}
 
 	if (viewportSize != status.v && typeof(viewportSize) != "undefined") {
-			present['makeViewport' + viewportSize]();
+		present['makeViewport' + viewportSize]();
 	}
 
 	presenter.status = hash;
