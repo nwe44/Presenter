@@ -11,9 +11,9 @@ var presenter = {
 
 		this.listenForKeyEvents();
 
-		$(".nav-item-presentation").click(function(e){
+		$(".nav-item-presentation").click(function (e) {
 			e.preventDefault();
-			var href = $(this).attr( "href" );
+			var href = $(this).attr("href");
 			// Push this URL "state" onto the history hash.
 			$('.header-icon-menu').click();
 			presenter.status = {};
@@ -21,30 +21,30 @@ var presenter = {
 
 			return false;
 		});
-		$(".nav-item-viewport").click(function(e){
+		$(".nav-item-viewport").click(function (e) {
 			e.preventDefault();
-			$.bbq.pushState({ v: $(this).attr( "id" )});
+			$.bbq.pushState({ v: $(this).attr("id")});
 			return false;
 		});
-		$(".header-icon-settings").click(function(e){
+		$(".header-icon-settings").click(function (e) {
 			e.preventDefault();
 			$('.header-icon-menu').click();
 			$('#settings-popover').addClass('popover-visible');
 			return false;
 		});
 
-		$(".nav-item-home").click(function(e){
+		$(".nav-item-home").click(function (e) {
 			e.preventDefault();
 			$.bbq.removeState();
 			return false;
 		});
 
-		$('.header-icon-menu').click(function(e){
+		$('.header-icon-menu').click(function (e) {
 			e.preventDefault();
 			presenter.newMenuStatus();
 			return false;
 		});
-		$('.header-icon-note').live('click', function(e){
+		$('.header-icon-note').live('click', function (e) {
 			e.preventDefault();
 			if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
 				presenter.newMenuStatus();
@@ -53,7 +53,7 @@ var presenter = {
 			$('.popover-wrapper-note .popover').toggleClass('popover-visible');
 			return false;
 		});
-		$('.header-icon-close').live('click', function(e){
+		$('.header-icon-close').live('click', function (e) {
 			e.preventDefault();
 			$(this).parent().removeClass('popover-visible');
 			return false;
@@ -64,7 +64,7 @@ var presenter = {
 		// Since the event is only triggered when the hash changes, we need
 		// to trigger the event now, to handle the hash the page may have
 		// loaded with.
-		$(window).trigger( "hashchange" );
+		$(window).trigger("hashchange");
 	},
 
 	makeViewportNormal : function () {
@@ -260,9 +260,9 @@ var presenter = {
 	},
 	
 	listenForKeyEvents : function () {
-		if (document.addEventListener){  
+		if (document.addEventListener) {  
 			document.addEventListener('keydown', presenter.keyEventHandler, false);
-		} else if (document.attachEvent){
+		} else if (document.attachEvent) {
 			document.attachEvent('keydown', presenter.keyEventHandler);
 		}
 
@@ -271,7 +271,7 @@ var presenter = {
 };
 
 // Bind a callback that executes when document.location.hash changes.
-$(window).bind( "hashchange", function(e) {
+$(window).bind("hashchange", function (e) {
 
 	var hash = $.bbq.getState(),
 		presentationId = hash.p,
@@ -289,7 +289,7 @@ $(window).bind( "hashchange", function(e) {
 
 	// no status? Then it's first page load via a link, run everything.
 	// check there's somewhere to go, and if we're already there.
-	} else if (!status || presentation && presentationId != status.p){
+	} else if (!status || presentation && presentationId != status.p) {
 		present.newContent({
 			presentation : presentation, 
 			presentationId : presentationId, 
@@ -313,6 +313,6 @@ $(window).bind( "hashchange", function(e) {
 	presenter.status = hash;
 });
 
-$(document).ready(function() { 
+$(document).ready(function () { 
 	presenter.init();
 });
