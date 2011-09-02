@@ -17,7 +17,7 @@ var presenter = {
 			// Push this URL "state" onto the history hash.
 			$('.header-icon-menu').click();
 			presenter.status = {};
-			$.bbq.pushState({ p: href.substr(1), });
+			$.bbq.pushState({ p: href.substr(1)});
 
 			return false;
 		});
@@ -50,7 +50,7 @@ var presenter = {
 				presenter.newMenuStatus();
 			}
 
-			$('.popover-wrapper-note .popover').toggleClass('popover-visible')
+			$('.popover-wrapper-note .popover').toggleClass('popover-visible');
 			return false;
 		});
 		$('.header-icon-close').live('click', function(e){
@@ -157,8 +157,8 @@ var presenter = {
 		var liveContent = "";
 		$('.popover-wrapper-nav .popover').addClass('popover-visible');
 		try {
-			for (var i = 0, l = presentations['contents'].notes.length; i < l; i += 1) {
-				liveContent += (presentations['contents'].notes[i]).note;
+			for (var i = 0, l = presentations.contents.notes.length; i < l; i += 1) {
+				liveContent += (presentations.contents.notes[i]).note;
 			}
 
 			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");
