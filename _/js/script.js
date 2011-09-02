@@ -120,16 +120,10 @@ var presenter = {
 	// load some new content
 	newContent : function (opts) {
 		var that = this,
-			status = that.status,
-			sortable = [];
+			status = that.status;
 
-		if (!opts.presentation.sortedImages) {
-			// TODO Someday my php will be good enough that I don't need to do this.
-			for (var fileName in opts.presentation.images) {
-				sortable.push(opts.presentation.images[fileName]);
-			}
-			opts.presentation.sortedImages = sortable.sort();
-		}
+		// make sure everything's in order
+		opts.presentation.images.sort();
 
 		//	highlight the active link
 		$(".main-nav a").removeClass('nav-item-link-active');
@@ -237,17 +231,16 @@ var presenter = {
 	},
 
 	keyEventHandler : function (e) {
-		var state = $.bbq.getState();
+		var state = $.bbq.getState()
+			currentPresentation = presenter.status.p;
 
 		switch (e.keyCode) {
 			case 39: // Right arrow
 			case 13: // Enter
 			case 32: // Space
 			case 34: // Page down
-				// this sort of thing is a sign of a badly constructed data object.
-				// TODO: rebuild the data object
 				state.s = state.s || 0;
-				if (presentations[presenter.status.p] && presentations[presenter.status.p].sortedImages.length - 1 > state.s) {
+				if (presentations[currentPresentation] && presentations[currentPresentation].images.length - 1 > state.s) {
 					state.s++;
 					$.bbq.pushState(state);
 					event.preventDefault();

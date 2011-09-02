@@ -137,7 +137,7 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 					$fileInfo['note'] = Markdown(file_get_contents($path . "/" . $file));
 					$structure_array[$encoded_path]['notes'][] = $fileInfo;
 				} elseif(stripos($fileInfo['mimetype'], "image") === 0) {
-					$structure_array[$encoded_path]['images'][$file] = $path . "/" . $file;
+					$structure_array[$encoded_path]['images'][] = $path . "/" . $file;
 
 				}
 
@@ -171,7 +171,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	<script id="presentationTmpl" type="text/x-jquery-tmpl"> 
 		<div class="horizontal-carousel horizontal-carousel-hidden slidewrap">
 			<ul class="horizontal-carousel-slider slider">
-				{{each sortedImages}}
+				{{each images}}
 				<li data-slideid="slide${$index}" class="horizontal-carousel-slide">
 					<img src="${$value}" />&nbsp;
 				</li>
