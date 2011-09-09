@@ -44,16 +44,8 @@ var presenter = {
 			presenter.newMenuStatus();
 			return false;
 		});
-		$('.header-icon-note').live('click', function (e) {
-			e.preventDefault();
-			if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
-				presenter.newMenuStatus();
-			}
 
-			$('.popover-wrapper-note .popover').toggleClass('popover-visible');
-			return false;
-		});
-		$('.header-icon-close').live('click', function (e) {
+		$('.header-icon-close').click(function (e) {
 			e.preventDefault();
 			$(this).parent().removeClass('popover-visible');
 			return false;
@@ -210,6 +202,24 @@ var presenter = {
 
 		// place the new note
 		$('#noteTmpl').tmpl(note).appendTo('header');
+
+		// iOS doesn't like 'live' so attaching click events here.
+		$('.header-icon-note').click(function (e) {
+			e.preventDefault();
+			if ($('.popover-wrapper-nav .popover').hasClass('popover-visible')) {
+				presenter.newMenuStatus();
+			}
+
+			$('.popover-wrapper-note .popover').toggleClass('popover-visible');
+			return false;
+		});
+
+		$('.header-icon-close').click(function (e) {
+			e.preventDefault();
+			$(this).parent().removeClass('popover-visible');
+			return false;
+		});
+
 	},
 
 	// build the nav and append it to the header

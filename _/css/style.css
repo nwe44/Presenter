@@ -391,7 +391,7 @@ header{
 	position: absolute;
 	bottom: 25px;
 	left: 0;
-	z-index: 1000;
+	z-index: 80;
 	padding: 5px;
 	display: none;
 }
