@@ -187,10 +187,15 @@ var presenter = {
 		var presentation = presentations[id],
 			note = {},
 			titleRegEx = new RegExp("(<h1[^>]*>(.*)</h1>)");
-
-		note.content = (presentation.notes[0]).note;
-		note.title = titleRegEx.exec(note.content);
-		note.title = note.title[note.title.length - 1];
+		try {
+			note.content = (presentation.notes[0]).note;
+			note.title = titleRegEx.exec(note.content);
+			note.title = note.title[note.title.length - 1];
+		} catch (err) {
+			log(err, presentation,  "Can't find a text file for the presentation in '" + presentation.path + "'");
+			note.title = presentation.path;
+		}
+		
 
 		// remove the old note, if any
 		$('.popover-wrapper-note').remove();
@@ -231,12 +236,17 @@ var presenter = {
 		// in other words; an array
 		for (var key in presentations) {
 			if (presentations.hasOwnProperty(key) && presentations[key].path) {
-				var presentation = presentations[key],
+				try {
+					var presentation = presentations[key],
 					note = (presentation.notes[0]).note,
 					titleRegEx = new RegExp("(<h1[^>]*>(.*)</h1>)");
-
-				presentation.title = titleRegEx.exec(note);
-				presentation.title = presentation.title[presentation.title.length - 1];
+					presentation.title = titleRegEx.exec(note);
+					presentation.title = presentation.title[presentation.title.length - 1];
+				} catch(err) {
+					// looks like there's no note 
+					log(err, presentations[key], "Can't find a text file for the presentation in '" + (presentations[key]).path) + "'";
+					presentation.title = (presentations[key]).path;
+				}
 				presentation.id = key;
 				processedPresentations.list.push(presentation);
 			}
