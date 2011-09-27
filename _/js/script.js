@@ -108,21 +108,6 @@ var presenter = {
 		$('.throbber').remove();
 		$('.horizontal-carousel').removeClass('horizontal-carousel-hidden');
 	},
-	// better array sorting
-	reA : /[^a-zA-Z]/g,
-	reN : /[^0-9]/g,
-	compareNumbers : function (a, b) {
-		var that = presenter,
-			aA = a.replace(that.reA, ""),
-			bA = b.replace(that.reA, "");
-		if(aA === bA) {
-			var aN = parseInt(a.replace(that.reN, ""), 10);
-			var bN = parseInt(b.replace(that.reN, ""), 10);
-			return aN === bN ? 0 : aN > bN ? 1 : -1;
-		} else {
-			return aA > bA ? 1 : -1;
-		}
-	},
 
 	// load some new content
 	newContent : function (opts) {
@@ -130,7 +115,7 @@ var presenter = {
 			status = that.status;
 
 		// make sure everything's in order
-		opts.presentation.images = opts.presentation.images.sort(that.compareNumbers);
+		opts.presentation.images.alphanumSort();
 
 		//	highlight the active link
 		$(".main-nav a").removeClass('nav-item-link-active');
