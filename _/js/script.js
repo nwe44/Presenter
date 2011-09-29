@@ -164,7 +164,7 @@ var presenter = {
 	// change slide position
 	// TODO: should this function be named "nextSlide" ?
 	newSlide : function (slideNo) {
-		$('.carousel-tabs li').eq(slideNo).find('a').click();
+		$('.carousel-tabs li').eq(slideNo).find('a').attr('aria-selected', 'true').click();
 	},
 
 	// build a new note
