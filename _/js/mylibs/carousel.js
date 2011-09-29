@@ -4,7 +4,25 @@
 	var inst = 0;
 	
 	$.fn.getPercentage = function() {
-		return this.attr('style').match(/margin\-left:(.*[0-9])/i) && parseInt(RegExp.$1);
+		var oPercent = this.attr('style').match(/margin\-left:(.*[0-9])/i) && parseInt(RegExp.$1);
+		
+		return oPercent;
+	};
+	
+	$.fn.adjRounding = function(slide) {
+		var $el = $(this),
+			$slides = $el.find( slide ),
+			diff = $el.parent().width() - $($slides[0]).width();
+		
+		if (diff !== 0) { 
+			$($slides).css( "position", "relative" );
+			
+			for (var i = 0; i < $slides.length; i++) {
+				$($slides[i]).css( "left", (diff * i) + "px" );
+			}
+		}
+
+		return this;
 	};
 	
 	$.fn.carousel = function(config) {
@@ -26,48 +44,52 @@
 			namespace		: 'carousel',
 			speed			: 300
 		},
-		opt = $.extend(defaults, config),
-		$slidewrap = this,
-		dStyle = document.body.style,
+		opt               = $.extend(defaults, config),
+		$slidewrap        = this,
+		dStyle            = document.body.style,
 		transitionSupport = dStyle.webkitTransition !== undefined || 
-							dStyle.mozTransition !== undefined ||
-							dStyle.msTransition !== undefined ||
-							dStyle.OTransition !== undefined ||
-							dStyle.transition !== undefined,
+							dStyle.mozTransition    !== undefined ||
+							dStyle.msTransition     !== undefined ||
+							dStyle.OTransition      !== undefined ||
+							dStyle.transition       !== undefined,
 		carousel = {
 			init : function() {
 				inst++;
 								
 				$slidewrap.each(function(carInt) {
-						var $wrap = $(this),
-							$slider = $wrap.find(opt.slider),
-							$slide = $wrap.find(opt.slide),			
-							slidenum = $slide.length,
+						var $wrap      = $(this),
+							$slider    = $wrap.find(opt.slider),
+							$slide     = $wrap.find(opt.slide),			
+							slidenum   = $slide.length,
 							transition = "margin-left " + ( opt.speed / 1000 ) + "s ease",
-							tmp = 'carousel-' + inst + '-' + carInt;
+							tmp        = 'carousel-' + inst + '-' + carInt;
 
+						if( $slide.length <= 1 ) {
+							return; /* No sense running all this code if the carousel functionality is unnecessary. */
+						}
+						
 						$wrap
 							.css({
-								overflow: "hidden",
-								width: "100%"
+								overflow             : "hidden",
+								width                : "100%"
 							})
-							.attr('role', 'application');
-
+							.attr('role' , 'application');
+						
 						$slider
 							.attr( 'id', ( $slider[0].id || 'carousel-' + inst + '-' + carInt ) )
 							.css({
-								marginLeft: "0px",
-								"float": "left",
-								width: 100 * slidenum + "%",
-								"-webkit-transition": transition,
-								"-moz-transition": transition,
-								"-ms-transition": transition,
-								"-o-transition": transition,
-								"transition": transition
+								"marginLeft"         : "0px",
+								"float"              : "left",
+								"width"              : 100 * slidenum + "%",
+								"-webkit-transition" : transition,
+								"-moz-transition"    : transition,
+								"-ms-transition"     : transition,
+								"-o-transition"      : transition,
+								"transition"         : transition
 							})
-							.bind( 'move', carousel.move )
-							.bind( 'nextprev', carousel.nextPrev )
-							.bind( 'navstate', carousel.navState );
+							.bind( 'carouselmove' , carousel.move )
+							.bind( 'nextprev'     , carousel.nextPrev )
+							.bind( 'navstate'     , carousel.navState );
 
 						$slide
 							.css({
@@ -79,7 +101,7 @@
 
 								$el.attr({
 									role : "tabpanel document",
-									id : tmp + '-slide' + i
+									id   : tmp + '-slide' + i
 								});
 
 								if( opt.addPagination ) {
@@ -88,7 +110,7 @@
 							});
 	
 						// Build and insert navigation/pagination, if specified in the options:
-						opt.addPagination 	&& carousel.addPagination();
+						opt.addPagination   && carousel.addPagination();
 						opt.addNav 			&& carousel.addNav();
 						
 						$slider.trigger( "navstate", { current: 0 });
@@ -117,19 +139,20 @@
 			},
 			addPagination : function() {
 				$slidewrap.each(function(i) {
-					var $oEl = $(this),
-						$slider = $oEl.find(opt.slider),
+					var $oEl        = $(this),
 						$pagination = $('<ol class="' + opt.namespace + '-tabs" role="tablist navigation" />'),
-						slides = $oEl.find(opt.slide).length,
-						associated = 'carousel-' + inst + '-' + i;
+						$slider     = $oEl.find(opt.slider),
+						$slides     = $oEl.find(opt.slide)
+						slideNum    = $slides.length,
+						associated  = 'carousel-' + inst + '-' + i;
 						
-					while( slides-- ) {
-						var hed = $( $oEl.find( opt.slide )[ slides ] ).find( opt.slideHed ).text() || 'Page ' + ( slides + 1 ),
+					while( slideNum-- ) {
+						var hed = $( $slides[ slideNum ] ).find( opt.slideHed ).text() || 'Page ' + ( slideNum + 1 ),
 							tabMarkup = [
 								'<li role="presentation">',
-									'<a href="#' + associated + '-slide' + slides +'"',
-									' aria-controls="' + associated + '-slide' + slides +'"',
-									' id="' + associated + '-tab' + slides + '" role="tab">' + hed + '</a>',
+									'<a href="#' + associated + '-slide' + slideNum +'"',
+									' aria-controls="' + associated + '-slide' + slideNum +'"',
+									' id="' + associated + '-tab' + slideNum + '" role="tab">' + hed + '</a>',
 								'</li>'
 							].join('');
 						
@@ -139,7 +162,7 @@
 					$pagination
 						.appendTo( $oEl )
 						.find('li').keydown( function(e) {
-							var $el = $(this),
+							var $el      = $(this),
 								$prevTab = $el.prev().find('a'),
 								$nextTab = $el.next().find('a');
 
@@ -157,11 +180,15 @@
 							}
 						})
 						.find('a').click( function(e) {
-							var current = $(this).parent().index(),
-								move = -( 100 * ( current ) ),
-								$slider = $oEl.find( opt.slider );
+							var $el = $(this);
+							
+							if( $el.attr('aria-selected') == 'true' ) { 
+								var current = $el.parent().index(),
+									move    = -( 100 * ( current ) ),
+									$slider = $oEl.find( opt.slider );
 
-							$slider.trigger( "move", { moveTo: move });
+								$slider.trigger( 'carouselmove', { moveTo: move });
+							}
 							e.preventDefault();
 						});
 				});
@@ -172,11 +199,11 @@
 				return Math.ceil( (val - (val % 100 ) ) / 100) * 100;
 			},
 			navState : function(e, ui) {
-				var $el = $(this),
-					$slides = $el.find(opt.slide),
-					ind = -(ui.current / 100),
+				var $el          = $(this),
+					$slides      = $el.find(opt.slide),
+					ind          = -(ui.current / 100),
 					$activeSlide = $($slides[ind]);
-					
+								
 				$el.attr('aria-activedescendant', $activeSlide[0].id);
 
 				// Update state of active tabpanel:
@@ -189,24 +216,21 @@
 						
 				// Update state of next/prev navigation:
 				if( ( !!opt.prevSlide || !!opt.nextSlide ) ) {
-					var $target = $('[href="#' + this.id + '"]');
+					var $target = $('[href*="#' + this.id + '"]');
 					
 					$target.removeClass( opt.namespace + '-disabled' );
-					
-					switch( ui.current ) {
-						case ( -($slides.length - 1) * 100 ):
-							$target.filter(opt.nextSlide).addClass( opt.namespace + '-disabled' );
-							break;
-						case 0:
-							$target.filter(opt.prevSlide).addClass( opt.namespace + '-disabled' );
-							break;
+
+					if( ind == 0 ) {
+						$target.filter(opt.prevSlide).addClass( opt.namespace + '-disabled' );
+					} else if( ind == $slides.length - 1 ) {
+						$target.filter(opt.nextSlide).addClass( opt.namespace + '-disabled' );
 					}
 				}
 								
 				// Update state of pagination tabs:
 				if( !!opt.addPagination ) {
 					var tabId = $activeSlide.attr('aria-labelledby'),
-						$tab = $('#' + tabId );
+						$tab  = $('#' + tabId );
 					
 					$tab
 						.parent()
@@ -227,30 +251,34 @@
 			},
 			move : function(e, ui) {
 				var $el = $(this);
-
+				
 				$el
 					.trigger(opt.namespace + "-beforemove")
 					.trigger("navstate", { current: ui.moveTo });
 				
 				if( transitionSupport ) {
-					$el.css('marginLeft', ui.moveTo + "%");
 					
-					$el.one("transitionend webkitTransitionEnd OTransitionEnd", function() {
-						$(this).trigger( opt.namespace + "-aftermove" );
-					});
+					$el
+						.adjRounding( opt.slide ) /* Accounts for browser rounding errors. Lookin’ at you, iOS Safari. */
+						.css('marginLeft', ui.moveTo + "%")
+						.one("transitionend webkitTransitionEnd OTransitionEnd", function() {
+							$(this).trigger( opt.namespace + "-aftermove" );
+						});
+						
 				} else {					
-					$el.animate({ marginLeft: ui.moveTo + "%" }, { duration : opt.speed, queue : false }, function() {
-						$el.trigger( opt.namespace + "-aftermove" );
-					});
+					$el
+						.adjRounding( opt.slide )
+						.animate({ marginLeft: ui.moveTo + "%" }, { duration : opt.speed, queue : false }, function() {
+							$(this).trigger( opt.namespace + "-aftermove" );
+						});
 				}
-			
 			},
-			nextPrev : function(e, ui) {
+			nextPrev : function(e, ui) {				
 				var $el = $(this),
 					left = ( $el ) ? $el.getPercentage() : 0,
 					$slide = $el.find(opt.slide),
 					constrain = ui.dir === 'prev' ? left != 0 : -left < ($slide.length - 1) * 100,
-					$target = $( '[href="#' + $el.attr('id') + '"]');
+					$target = $( '[href="#' + this.id + '"]');
 
 				if (!$el.is(":animated") && constrain ) {
 
@@ -260,7 +288,7 @@
 						left = ( ( left % 100 ) != 0 ) ? carousel.roundDown(left) - 100 : left - 100;
 					}
 
-					$el.trigger("move", { moveTo: left });
+					$el.trigger('carouselmove', { moveTo: left });
 
 					$target
 						.removeClass( opt.namespace + '-disabled')
@@ -281,21 +309,18 @@
 				} else {
 					var reset = carousel.roundDown(left);
 
-					$el.trigger("move", { moveTo: reset });
+					$el.trigger('carouselmove', { moveTo: reset });
 				}
 
-				if (opt.callback) {
-				  opt.callback();
-				}
 			}
 		};
 	
 		carousel.init(this);
 
 		$(opt.nextSlide + ',' + opt.prevSlide)
-			.bind('click', function(e) {
+			.bind('click', function(e) {				
 				var $el = $(this),
-					link = $el.attr('href'),
+					link = this.hash,
 					dir = ( $el.is(opt.prevSlide) ) ? 'prev' : 'next',
 					$slider = $(link);
 
@@ -309,7 +334,7 @@
 			})
 			.bind('keydown', function(e) {
 				var $el = $(this),
-					link = this.getAttribute('href');
+					link = this.hash;
 
 				switch (e.which) {
 					case 37:
@@ -338,13 +363,13 @@
 
 
 		$slidewrap.filter('[data-autorotate]').each(function() {
-			var $el = $(this),
-				speed = this.getAttribute('data-autorotate'),
-				auto,
+			var auto,
+				$el         = $(this),
+				speed       = $el.attr('data-autorotate'),
+				slidenum    = $el.find(opt.slide).length,
 				autoAdvance = function() {
-					var slidenum = $el.find(opt.slide).length,
-						$slider  = $el.find(opt.slider),
-						active   = -($(opt.slider).getPercentage() / 100) + 1;
+					var $slider  = $el.find(opt.slider),
+						active   = -( $(opt.slider).getPercentage() / 100 ) + 1;
 
 					switch( active ) {
 						case slidenum: 
@@ -391,11 +416,11 @@ $.event.special.dragSnap = {
 					transition = ( tog ) ? "margin-left " + speed + "s ease" : 'none';
 
 				$el.css({
-					"-webkit-transition": transition,
-					"-moz-transition": transition,
-					"-ms-transition": transition,
-					"-o-transition": transition,
-					"transition": transition
+					"-webkit-transition" : transition,
+					"-moz-transition"    : transition,
+					"-ms-transition"     : transition,
+					"-o-transition"      : transition,
+					"transition"         : transition
 				});
 			},
 			roundDown = function(left) {
