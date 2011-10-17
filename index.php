@@ -163,6 +163,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 
 	<!-- scripts concatenated and minified via build script -->
 	<script defer src="_/js/mylibs/carousel.js"></script>
+	<script defer src="_/js/mylibs/underscore.js"></script>
 	<script defer src="_/js/mylibs/jquery.tmpl.js"></script>
 	<script defer src="_/js/mylibs/jquery.ba-bbq.js"></script>
 	<script defer src="_/js/plugins.js"></script>
@@ -192,7 +193,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 						<li class="nav-item">
 							<a class="nav-item-link nav-item-home" href="#" id="home-button" title="">Home</a>
 						</li>
-						{{each presentations}}
+						{{each list}}
 						{{if $value.id}}
 						<li class="nav-item">
 							<a class="nav-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>

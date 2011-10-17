@@ -237,6 +237,15 @@ var presenter = {
 			}
 		}
 
+		indexReference = _.pluck(processedPresentations.list, "title");
+		indexReference.alphanumSort();
+
+		processedPresentations.list = _.sortBy(processedPresentations.list, function (myListElement) {
+
+			return _.indexOf(indexReference, myListElement.title);
+
+		} );
+
 		$('#mainNavTmpl').tmpl(processedPresentations).appendTo('header');
 	},
 
