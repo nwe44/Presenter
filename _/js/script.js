@@ -348,7 +348,6 @@ $(document).ready(function () {
 	if (document.images) {
 		img1 = new Image();
 		img1.src = "_/img/ajax-loader.gif";
-		console.log(img1);
 	}
 
 	presenter.init();
