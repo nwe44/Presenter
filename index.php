@@ -183,29 +183,26 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	</script>
 
 	<script id="mainNavTmpl" type="text/x-jquery-tmpl"> 
-		<div class="popover-wrapper popover-wrapper-nav">
-			<div class="popover above">
-				<div class="arrow"></div>
-				<div class="inner">
-					<h3 class="title">Presentations</h3>
-					<nav class="content">
-						<ul class="main-nav">
-						<li class="nav-item">
-							<a class="nav-item-link nav-item-home" href="#" id="home-button" title="">Home</a>
-						</li>
-						{{each list}}
-						{{if $value.id}}
-						<li class="nav-item">
-							<a class="nav-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>
-						</li>
-						{{/if}}
-						{{/each}}
-						</ul>
-					</nav>
-				</div>
-				<a class="header-icon header-icon-settings ir" href="#" id="settings-button" title="">Home</a>
-				<a class="header-icon header-icon-close ir"></a>
-			</div>
+		
+		<div class="nav-wrapper">
+			<div class="overlay"></div>
+			<h3 class="title">Presentations</h3>
+			<nav class="content">
+				<ul class="main-nav">
+				<li class="presentation-item">
+					<a class="presentation-item-link nav-item-home" href="#" id="home-button" title="">Home</a>
+				</li>
+				{{each list}}
+				{{if $value.id}}
+				<li class="presentation-item">
+					<a class="presentation-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>
+				</li>
+				{{/if}}
+				{{/each}}
+				</ul>
+			</nav>
+			<a class="header-icon header-icon-settings ir" href="#" id="settings-button" title="">Home</a>
+			<a class="header-icon header-icon-close ir"></a>
 		</div>
 		<div class="popover popover-centered" id="settings-popover">
 			<div class="inner">
