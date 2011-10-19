@@ -222,6 +222,11 @@ body{
 	line-height: 1.3846153846em;
 	background: #f1f1f1;
 }
+.oldie #container{
+	position: relative;
+	height: 100%;
+}
+
 p,
 ul,
 ol{
@@ -350,6 +355,9 @@ header{
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);	
 }
 
+.front-page h1{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
 .front-page h2{
 	font-size: 1em;
 	color: #333;
@@ -514,12 +522,20 @@ header{
    Nav
    ========================================================================== */
 .nav-wrapper{
-	left: 0;
-	top:0;
-	bottom:0;
-	width: 100%;
 	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(150,150,150, 0.1);
+	top:0;
 	z-index: 0;
+	overflow-y: auto;
+	-webkit-transition: background 0.25s ease-in-out;
+	-moz-transition: background 0.25s ease-in-out;
+	-o-transition: background 0.25s ease-in-out;	
+	transition: background 0.25s ease-in-out;
+}
+.oldie .nav-wrapper{
+	display: none;
 }
 .nav-wrapper .header-icon-close{
 	top: 6px;
@@ -545,39 +561,39 @@ header{
 	-o-transition: all 0.25s ease-in-out;	
 	transition: all 0.25s ease-in-out;
 }
+.nav-visible{
+	bottom: 0px;
+}
 .nav-visible h3{
 	top:0;
 }
 .nav-wrapper .content{
-	position: absolute;
-	width: 100%;
+	position: relative;
+	margin: 44px auto;
+	width: 80%;
 	z-index: 99;
 	text-align: center;
 	top:30px;
 	bottom:0px;
 	overflow-y: auto;
+	border: 2px solid #f1f1f1;
+  -webkit-border-radius: 50px; 
+     -moz-border-radius: 50px; 
+          border-radius: 50px; 
+
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
 /* 	display: none; */
 }
 
-.overlay{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: rgba(150,150,150, 0.1);
-	top:0;
-	z-index: 1;
-	-webkit-transition: background 0.25s ease-in-out;
-	-moz-transition: background 0.25s ease-in-out;
-	-o-transition: background 0.25s ease-in-out;	
-	transition: background 0.25s ease-in-out;
-}
 .nav-visible{
-	z-index: 97;
-}
-
-.nav-visible .overlay{
 	background: rgba(150,150,150, 0.9);
 	z-index: 98;
+}
+
+
+.oldie .nav-visible{
+	background: url(../img/overlay-bg.png) 0 0 repeat;
+	display: block;
 }
 .presentation-item{
 	overflow: hidden;
@@ -585,11 +601,12 @@ header{
 	height: 200px;
 	background: #333333;
 	display: inline-block;
+	list-style: none;
 	margin: 44px;
 	text-align: left;
 	opacity: 0;
 	margin-top: 100px;
-
+	font-family: 'Open Sans Condensed', sans-serif;
   -webkit-border-radius: 3px; 
      -moz-border-radius: 3px; 
           border-radius: 3px; 
@@ -620,8 +637,8 @@ header{
 	transform: scale(1.1);
 }
 .presentation-item a{
-	font-size: 18px;
-	line-height: 22px;
+	font-size: 32px;
+	line-height: 36px;
 	margin: 0;
 	color:#cccccc;
 	width: 180px;
@@ -903,6 +920,7 @@ code{
 	}
 	.front-page h1{
 		margin-left: 276px;
+		font-family: 'Open Sans Condensed', sans-serif;
 	}
 	.front-page h2,
 	.front-page h3,

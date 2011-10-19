@@ -70,7 +70,7 @@ include_once "_/includes/markdown.php";
   <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1.0">
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
-
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="_/css/style.css">
   
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -185,7 +185,6 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	<script id="mainNavTmpl" type="text/x-jquery-tmpl"> 
 		
 		<div class="nav-wrapper">
-			<div class="overlay"></div>
 			<h3 class="title">Presentations</h3>
 			<nav class="content">
 				<ul class="main-nav">
