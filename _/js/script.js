@@ -298,51 +298,70 @@ var presenter = {
 			document.attachEvent('keydown', presenter.keyEventHandler);
 		}
 
-	}
+	},
 
-};
-
-// Bind a callback that executes when document.location.hash changes.
-$(window).bind("hashchange", function (e) {
-
-	var hash = $.bbq.getState(),
+	router : function (e) {
+		var hash = $.bbq.getState(),
 		presentationId = hash.p,
 		slideNo = hash.s,
 		viewportSize = hash.v,
 		presentation = presentations[presentationId],
 		status = presenter.status,
-		present = presenter; // local variable for better minification
+		present = window.presenter; // local variable for better minification
 
-	// now let's find out what changed
+		// now let's find out what changed
 
-	// No presentation? We're on the front page
-	if (!presentation) {
-		present.newFrontPage();
+		// No presentation? We're on the front page
+		if (!presentation) {
+			present.newFrontPage();
 
-	// no status? Then it's first page load via a link, run everything.
-	// check there's somewhere to go, and if we're already there.
-	} else if (!status || presentation && presentationId != status.p) {
-		present.newContent({
-			presentation : presentation, 
-			presentationId : presentationId, 
-			slideNo : slideNo
-		});
+		// no status? Then it's first page load via a link, run everything.
+		// check there's somewhere to go, and if we're already there.
+		} else if (!status) {
+			present.newContent({
+				presentation : presentation,
+				presentationId : presentationId,
+				slideNo : slideNo
+			});
 
-	// User has changed slide number
-	// most likely by using the back button.
-	} else if (slideNo != status.s) {
-		present.newSlide(slideNo);
+		// new presentationID, let's load a new presentation
+		} else if (presentation && presentationId != status.p) {
 
-	// error handling
-	} else {
-//		console.log('saw nothing', hash, status);
-	}
+			// let's do this quitely
+			$(window).unbind('hashchange', window.presenter.router);
 
-	if (viewportSize != status.v && typeof(viewportSize) != "undefined") {
-		present['makeViewport' + viewportSize]();
-	}
+			// reset slide number to zero
+			$.bbq.pushState({ s: 0});
+			$(window).bind('hashchange', window.presenter.router);
 
-	presenter.status = hash;
+			present.newContent({
+				presentation : presentation, 
+				presentationId : presentationId, 
+				slideNo : 0
+			});
+
+		// User has changed slide number
+		// most likely by using the back button.
+		} else if (slideNo != status.s) {
+			present.newSlide(slideNo);
+
+		// error handling
+		} else {
+		//		console.log('saw nothing', hash, status);
+		}
+
+		if (viewportSize != status.v && typeof(viewportSize) != "undefined") {
+			present['makeViewport' + viewportSize]();
+		}
+
+		window.presenter.status = hash;
+	} // end of router()
+
+};
+
+// Bind a callback that executes when document.location.hash changes.
+$(window).bind("hashchange", function (e) {
+	presenter.router(e);
 });
 
 $(document).ready(function () {
