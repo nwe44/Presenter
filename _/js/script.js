@@ -317,7 +317,7 @@ var presenter = {
 
 		// no status? Then it's first page load via a link, run everything.
 		// check there's somewhere to go, and if we're already there.
-		} else if (!status) {
+		} else if (!status.p) {
 			present.newContent({
 				presentation : presentation,
 				presentationId : presentationId,
