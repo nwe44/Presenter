@@ -194,7 +194,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 				{{each list}}
 				{{if $value.id}}
 				<li class="presentation-item">
-					<a class="presentation-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>
+					<span class="presentation-item-number">${$index + 1}</span><a class="presentation-item-link nav-item-presentation" href="#${$value.id}" id="${$value.uniqueId}" title="">${$value.title}</a>
 				</li>
 				{{/if}}
 				{{/each}}

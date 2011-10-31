@@ -611,6 +611,7 @@ header{
 }
 .presentation-item{
 	overflow: hidden;
+	position: relative;
 	width: 200px;
 	height: 200px;
 	background: #333333;
@@ -649,6 +650,16 @@ header{
 	-o-transform: scale(1.1);
 	transform: scale(1.1);
 }
+.presentation-item-number{
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	color: #444444;
+	font-size: 72px;
+	line-height: 72px;
+	height: 72px;
+	z-index: 1;
+}
 .presentation-item a{
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
@@ -657,6 +668,8 @@ header{
 	font-size: 32px;
 	line-height: 36px;
 	margin: 0;
+	position: relative;
+	z-index: 2;
 	color:#cccccc;
 	width: 180px;
 	height: 180px;
