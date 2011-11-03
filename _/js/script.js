@@ -151,9 +151,9 @@ var presenter = {
 	newFrontPage : function () {
 		var liveContent = "";
 		$('.popover-wrapper-nav .popover').addClass('popover-visible');
-		try {
-			for (var i = 0, l = presentations.contents.notes.length; i < l; i += 1) {
-				liveContent += (presentations.contents.notes[i]).note;
+		try { // md5(contents) == "98bf7d8c15784f0a3d63204441e1e2aa"
+			for (var i = 0, l = presentations["98bf7d8c15784f0a3d63204441e1e2aa"].notes.length; i < l; i += 1) {
+				liveContent += (presentations["98bf7d8c15784f0a3d63204441e1e2aa"].notes[i]).note;
 			}
 
 			$('#main').html("<div class='page-border'></div><div class='front-page'><div class='front-page-wrapper'><div class='front-page-page'>" + liveContent + "</div></div></div>");

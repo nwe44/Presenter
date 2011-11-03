@@ -85,7 +85,7 @@ include_once "_/includes/markdown.php";
 
 function getDirectory( $path = '.', $level = 0, $structure_array = array ()){ 
 
-	$encoded_path = urlencode($path);
+	$encoded_path = md5($path);
 
 	if (function_exists('finfo_open')) {
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);	
@@ -107,10 +107,10 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 			if( is_dir( "$path/$file" ) ){ 
 			// Its a directory, so we need to keep reading down... 
-
+				$unique = md5($path . "/" . $file);
 				// add the directory to our array
-				$structure_array[urlencode($path . "/" . $file)]['path'] = $path . "/" . $file;
-				$structure_array[urlencode($path . "/" . $file)]['uniqueId'] = md5($path . "/" . $file);
+				$structure_array[$unique]['path'] = $path . "/" . $file;
+				$structure_array[$unique]['uniqueId'] = $unique;
 
 				// parse the directory
 				$structure_array = getDirectory( "$path/$file", ($level+1), $structure_array); 
