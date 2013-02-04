@@ -96,7 +96,7 @@ class Presenter
 		$('.horizontal-carousel').removeClass 'horizontal-carousel-hidden'
 
 	# load some new content
-	newContent  : (opts)  ->
+	newContent : (opts) ->
 
 		# make sure everything's in order
 		opts.presentation.images.alphanumSort()
@@ -112,14 +112,14 @@ class Presenter
 
 		$('#presentationTmpl').tmpl(opts.presentation).appendTo '#main'
 
-		$('.horizontal-carousel').imagesLoaded presenter.revealSlideshow
+		$('.horizontal-carousel').imagesLoaded @revealSlideshow
 
 		$('#main .slidewrap').carousel(
 			slider: '.horizontal-carousel-slider'
 			slide: '.horizontal-carousel-slide'
 			addPagination: true
 			addNav: true
-			callback: presenter.pushSlideNo
+			callback: @pushSlideNo
 			speed: 300 # ms.
 		)
 
@@ -140,8 +140,7 @@ class Presenter
 				<div class='page-border'></div>
 				<div class='front-page'>
 					<div class='front-page-wrapper'>
-						<div class='front-page-page'>#{liveContent}
-						</div>
+						<div class='front-page-page'>#{liveContent}</div>
 					</div>
 				</div>
 				"""
@@ -153,7 +152,7 @@ class Presenter
 	# change slide position
 	# TODO: should this function be named "nextSlide" ?
 	newSlide : (slideNo) ->
-		$('.carousel-tabs li').eq(slideNo).find('a').attr('aria-selected', 'true').click
+		$('.carousel-tabs li').eq(slideNo).find('a').attr('aria-selected', 'true').click()
 
 	# build a new note
 	newNote : (id) ->
@@ -183,7 +182,7 @@ class Presenter
 		$('.header-icon-note').click (e) ->
 			e.preventDefault()
 			if  $('.popover-wrapper-nav .popover').hasClass('popover-visible')
-				presenter.newMenuStatus()
+				@newMenuStatus()
 
 			$('.popover-wrapper-note .popover').toggleClass 'popover-visible'
 
@@ -228,12 +227,12 @@ class Presenter
 		index = $('.carousel-active-slide').index
 		# set the cached state so the hash change event
 		# doesn't fire based on this change
-		presenter.status.s = index
+		@status.s = index
 		$.bbq.pushState s: index
 
-	keyEventHandler : (e) ->
-		state = $.bbq.getState
-		currentPresentation = presenter.status.p
+	keyEventHandler : (e) =>
+		state = $.bbq.getState()
+		currentPresentation = @status.p
 
 		switch e.keyCode
 			when 39, 13, 32, 34 # Right arrow, Enter, Space, Page down
@@ -252,9 +251,9 @@ class Presenter
 
 	listenForKeyEvents : ->
 		if document.addEventListener
-			document.addEventListener 'keydown', presenter.keyEventHandler, false
+			document.addEventListener 'keydown', @keyEventHandler, false
 		else if document.attachEvent
-			document.attachEvent 'keydown', presenter.keyEventHandler
+			document.attachEvent 'keydown', @keyEventHandler
 
 	router : (e) ->
 		hash = $.bbq.getState()
