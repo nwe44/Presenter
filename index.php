@@ -167,7 +167,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	<script defer src="_/js/mylibs/jquery.tmpl.js"></script>
 	<script defer src="_/js/mylibs/jquery.ba-bbq.js"></script>
 	<script defer src="_/js/plugins.js"></script>
-	<script defer src="_/coffee/script.js"></script>
+	<script defer src="_/js/script.js"></script>
 	<!-- end scripts -->
 	<script id="presentationTmpl" type="text/x-jquery-tmpl">
 		<div class="horizontal-carousel horizontal-carousel-hidden slidewrap">
