@@ -6,9 +6,13 @@ class Presenter
 
 		@listenForKeyEvents()
 
-		$(".nav-item-presentation").click (e) ->
+		# Bind a callback that executes when document.location.hash changes.
+		$(window).bind "hashchange", (e) =>
+			@router e
+
+		$(".nav-item-presentation").click (e) =>
 			e.preventDefault()
-			href = $(@).attr("href")
+			href = $(e.target).attr("href")
 			$('.header-icon-menu').click()
 			@status = {}
 			$.bbq.pushState({ p: href.substr 1})
@@ -17,17 +21,18 @@ class Presenter
 			e.preventDefault()
 			$.bbq.pushState({ v: $(@).attr("id")})
 
-		$(".nav-item-settings").click (e) ->
+		$(".header-icon-settings").click (e) ->
 			e.preventDefault()
-			$('.header-icon-menu').click
+			log "called"
+			$('.header-icon-menu').click()
 			$('#settings-popover').addClass 'popover-visible'
 
-		$(".nav-item-home").click (e) ->
+		$(".nav-item-home").click (e) =>
 			e.preventDefault()
 			$.bbq.removeState()
 			@newMenuStatus()
 
-		$(".nav-item-menu").click (e) ->
+		$(".header-icon-menu").click (e) =>
 			e.preventDefault()
 			@newMenuStatus()
 
@@ -81,7 +86,6 @@ class Presenter
 		).addClass 'horizontal-carousel-sized'
 
 	newMenuStatus : ->
-		log called
 		$('.nav-wrapper').toggleClass 'nav-visible'
 		if $('.nav-wrapper').hasClass 'nav-visible'
 			$('.popover-wrapper .popover').removeClass 'popover-visible'
@@ -166,7 +170,7 @@ class Presenter
 			note.title = presentation.path
 
 		# remove the old note, if any
-		$('.popover-wrapper-note').remove
+		$('.popover-wrapper-note').remove()
 
 		# add a toggle switch if there isn't one
 		if ! $('header .header-icon-note').length
@@ -177,15 +181,15 @@ class Presenter
 
 		# iOS doesn't like 'live' so attaching click events here.
 		$('.header-icon-note').click (e) ->
-			e.preventDefault
+			e.preventDefault()
 			if  $('.popover-wrapper-nav .popover').hasClass('popover-visible')
-				presenter.newMenuStatus
+				presenter.newMenuStatus()
 
 			$('.popover-wrapper-note .popover').toggleClass 'popover-visible'
 
 
 		$('.header-icon-close').click (e) ->
-			e.preventDefault
+			e.preventDefault()
 			$(@).parent().removeClass 'popover-visible'
 
 	# build the nav and append it to the header
@@ -195,7 +199,7 @@ class Presenter
 
 		# orgainize a new object that's easier to work with in jQuery tmpl
 		# in other words; an array
-		for own key, presentation in presentations
+		for own key, presentation of presentations
 			if presentation.path
 				try
 					note = (presentation.notes[0]).note
@@ -211,7 +215,7 @@ class Presenter
 				processedPresentations.list.push presentation
 
 		indexReference = _.pluck processedPresentations.list, "title"
-		indexReference.alphanumSort
+		indexReference.alphanumSort()
 
 		processedPresentations.list = _.sortBy processedPresentations.list, (myListElement) ->
 			_.indexOf indexReference, myListElement.title
@@ -237,13 +241,13 @@ class Presenter
 				if presentations[currentPresentation] and presentations[currentPresentation].images.length - 1 > state.s
 					state.s++
 					$.bbq.pushState state
-					event.preventDefault
+					event.preventDefault()
 				break
 			when 37, 8, 33 # Left arrow, Backspace,  Page Up
 				if state.s > 0
 					state.s--
 					$.bbq.pushState state
-					event.preventDefault
+					event.preventDefault()
 				break
 
 	listenForKeyEvents : ->
@@ -268,21 +272,19 @@ class Presenter
 		# no status? Then it's first page load via a link, run everything.
 		# check there's somewhere to go, and if we're already there.
 		else if !@status.p
-			present.newContent
+			@newContent
 				presentation : presentation
 				presentationId : presentationId
 				slideNo : slideNo
 		# new presentationID, let's load a new presentation
 		else if presentation and presentationId != @status.p
 
-			# let's do this quitely
-			$(window).unbind 'hashchange', window.presenter.router
-
-			# reset slide number to zero
+			# reset slide number to zero ... quietly
+			$(window).unbind 'hashchange', @router
 			$.bbq.pushState s: 0
-			$(window).bind 'hashchange', window.presenter.router
+			$(window).bind 'hashchange', @router
 
-			present.newContent
+			@newContent
 				presentation : presentation
 				presentationId : presentationId
 				slideNo : 0
@@ -290,25 +292,19 @@ class Presenter
 		# User has changed slide number
 		# most likely by using the back button.
 		else if slideNo != @status.s
-			present.newSlide slideNo
+			@newSlide slideNo
 
 		# error handling
 		else
-			console.log('saw nothing', hash, @status);
-
+			log 'saw nothing', hash, @status
 		if viewportSize != @status.v and typeof(viewportSize) != "undefined"
-			present["makeViewport#{viewportSize}"]()
+			@["makeViewport#{viewportSize}"]()
 
 
 		@status = hash
 	# end of router()
 
-
 presenter = new Presenter()
-
-# Bind a callback that executes when document.location.hash changes.
-$(window).bind "hashchange", (e) ->
-	presenter.router e
 
 $(document).ready ->
 	# preload throbber
