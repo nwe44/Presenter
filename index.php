@@ -6,20 +6,20 @@
 **    ========================================================================
 **    github.com/nwe44/Presenter
 **
-**    This is a program to enable non-technical ftp users to 
+**    This is a program to enable non-technical ftp users to
 **    create a collection of image slideshows with attached comments.
-**    
-**    At my office there are a number of users who need to be able 
-**    to create slideshows within our our domain. This means a number 
+**
+**    At my office there are a number of users who need to be able
+**    to create slideshows within our our domain. This means a number
 **    of limitations:
 **
 **    - No code coding knowledge may be required for usage
-**    - No server technology (ie. ability to see/use .htaccess or databases) 
+**    - No server technology (ie. ability to see/use .htaccess or databases)
 **      knowledge may be required
 **    - Needs to be locally hosted
 **
-**    Most web hosts provide a gui for password protecting a directory, 
-**    so this is what I'm assuming people will use for security. I can't 
+**    Most web hosts provide a gui for password protecting a directory,
+**    so this is what I'm assuming people will use for security. I can't
 **    imagine there are many options given the above constraints.
 **
 **
@@ -27,7 +27,7 @@
 **    Installation
 **    ========================================================================
 **
-**    Upload index.php, the "contents" folder and the "_" folder to a 
+**    Upload index.php, the "contents" folder and the "_" folder to a
 **    public directory
 **
 **    Done.
@@ -39,8 +39,8 @@
 **    Each sub-directory of "contents" constitutes a presentation, so,
 **
 **    1. Drop images into a sub-directory of the contents folder.
-**    2. Create a text file (with any name) in to the folder created in step 1. 
-**       The contents of this file will be parsed as Markdown, and the h1 element 
+**    2. Create a text file (with any name) in to the folder created in step 1.
+**       The contents of this file will be parsed as Markdown, and the h1 element
 **       will name the presentation.
 **
 */
@@ -72,7 +72,7 @@ include_once "_/includes/markdown.php";
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="_/css/style.css">
-  
+
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
   <script src="_/js/libs/modernizr-2.0.6.min.js"></script>
 </head>
@@ -83,37 +83,37 @@ include_once "_/includes/markdown.php";
   <!-- JavaScript at the bottom for fast page loading -->
 <?php
 
-function getDirectory( $path = '.', $level = 0, $structure_array = array ()){ 
+function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 	$encoded_path = md5($path);
 
 	if (function_exists('finfo_open')) {
-		$finfo = finfo_open(FILEINFO_MIME_TYPE);	
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
 	}
 
 
-	$ignore = array( 'cgi-bin', '.', '..' ); 
-	// Directories to ignore when listing output. Many hosts 
-	// will deny PHP access to the cgi-bin. 
-	
-	$dh = @opendir( $path ); 
-	// Open the directory to the handle $dh 
+	$ignore = array( 'cgi-bin', '.', '..' );
+	// Directories to ignore when listing output. Many hosts
+	// will deny PHP access to the cgi-bin.
 
-	while( false !== ( $file = readdir( $dh ) ) ){ 
-	// Loop through the directory 
+	$dh = @opendir( $path );
+	// Open the directory to the handle $dh
 
-		if( !in_array( $file, $ignore ) ){ 
-		// Check that this file is not to be ignored 
+	while( false !== ( $file = readdir( $dh ) ) ){
+	// Loop through the directory
 
-			if( is_dir( "$path/$file" ) ){ 
-			// Its a directory, so we need to keep reading down... 
+		if( !in_array( $file, $ignore ) ){
+		// Check that this file is not to be ignored
+
+			if( is_dir( "$path/$file" ) ){
+			// Its a directory, so we need to keep reading down...
 				$unique = md5($path . "/" . $file);
 				// add the directory to our array
 				$structure_array[$unique]['path'] = $path . "/" . $file;
 				$structure_array[$unique]['uniqueId'] = $unique;
 
 				// parse the directory
-				$structure_array = getDirectory( "$path/$file", ($level+1), $structure_array); 
+				$structure_array = getDirectory( "$path/$file", ($level+1), $structure_array);
 
 			} else {
 
@@ -141,18 +141,18 @@ function getDirectory( $path = '.', $level = 0, $structure_array = array ()){
 
 				}
 
-			} 
+			}
 		}
 	}
 	if (function_exists('finfo_close')) {
 		finfo_close($finfo);
 	}
 
-	closedir( $dh ); 
+	closedir( $dh );
 	return $structure_array;
-	// Close the directory handle 
+	// Close the directory handle
 
-} 
+}
 $directories = json_encode(getDirectory('contents'));
 echo "<script> var presentations = " . $directories . ";</script>";
 ?>
@@ -167,9 +167,9 @@ echo "<script> var presentations = " . $directories . ";</script>";
 	<script defer src="_/js/mylibs/jquery.tmpl.js"></script>
 	<script defer src="_/js/mylibs/jquery.ba-bbq.js"></script>
 	<script defer src="_/js/plugins.js"></script>
-	<script defer src="_/js/script.js"></script>
+	<script defer src="_/coffee/script.js"></script>
 	<!-- end scripts -->
-	<script id="presentationTmpl" type="text/x-jquery-tmpl"> 
+	<script id="presentationTmpl" type="text/x-jquery-tmpl">
 		<div class="horizontal-carousel horizontal-carousel-hidden slidewrap">
 			<ul class="horizontal-carousel-slider slider">
 				{{each images}}
@@ -182,8 +182,8 @@ echo "<script> var presentations = " . $directories . ";</script>";
 		<div class="ir throbber"></div>
 	</script>
 
-	<script id="mainNavTmpl" type="text/x-jquery-tmpl"> 
-		
+	<script id="mainNavTmpl" type="text/x-jquery-tmpl">
+
 		<div class="nav-wrapper">
 			<h3 class="title">Presentations</h3>
 			<nav class="content">
@@ -230,7 +230,7 @@ echo "<script> var presentations = " . $directories . ";</script>";
 		</div>
 	</script>
 
-	<script id="noteTmpl" type="text/x-jquery-tmpl"> 
+	<script id="noteTmpl" type="text/x-jquery-tmpl">
 		<div class="popover-wrapper popover-wrapper-note">
 			<div class="popover above popover-visible">
 				<div class="arrow"></div>
